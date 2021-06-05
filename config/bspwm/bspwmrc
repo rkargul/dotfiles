@@ -2,20 +2,20 @@
 
 # Monitor setup
 
-if [[ $(xrandr -q | grep -w DP-1-0) =~ \ connected ]]; then
+if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
 	$HOME/.screenlayout/HOME.sh
 	
-	bspc monitor "eDP1" -n 1 -d IV V VI VII IIX IX X
-	bspc monitor "DP-1-0" -n 0 -d I II III
+	bspc monitor "eDP-1-1" -n 1 -d IV V VI VII IIX IX X
+	bspc monitor "DP-0" -n 0 -d I II III
 
 	bspc monitor 1 -d 4 5 6 7 8 9 10
 	bspc monitor 0 -d 1 2 3
 
-	bspc monitor "eDP1" -s "DP-1-0"
+	bspc monitor "eDP-1-1" -s "DP-0"
 else 
 	$HOME/.screenlayout/SINGLE.sh
 
-	bspc monitor "eDP1" -n 1 -d I II III IV V VI VII IIX IX X
+	bspc monitor "eDP-1-1" -n 1 -d I II III IV V VI VII IIX IX X
 
 	bspc monitor 1 -d 4 5 6 7 8 9 10 1 2 3
 fi
@@ -50,11 +50,12 @@ exec /usr/lib/geoclue-2.0/demos/agent &
 exec ps -aux | grep redshift || redshift &
 exec feh --bg-scale ~/Pictures/wallpaper.jpg &
 exec picom --backend glx &
-exec dunst &
 exec pkill redshift ; redshift &
 exec $HOME/.config/.scripts/lock.sh
 
 # Applets
 
 exec blueman-applet &
+
+# Startup applications
 

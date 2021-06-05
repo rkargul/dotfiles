@@ -12,7 +12,7 @@ fi
 for file in $SCRIPT_DIR/dotfiles/.*; do
 	if ! [[ ${file: -1} == "." ]] && ! [[ ${file: -1} == ".." ]]; then
 		echo "Copying $file, to $TARGET_DIR"
-		cp -r $file/ $TARGET_DIR/ &> /dev/null
+		cp -r $file/ $TARGET_DIR &> /dev/null || cp $file $TARGET_DIR &> /dev/null
 	fi
 done
 
@@ -23,6 +23,6 @@ for dir in $SCRIPT_DIR/config/*; do
 	fi
 	if ! [[ ${dir: -1} == "." ]] && ! [[ ${dir: -1} == ".." ]]; then
 		echo "Copying $dir, to $TARGET_DIR"
-		cp -r $TARGET_DIR/.config/ &> /dev/null
+		cp -r $dir/ $TARGET_DIR/.config &> /dev/null
 	fi
 done

@@ -109,7 +109,7 @@ let g:completion_chain_complete_list = [
     \{'mode': '<c-n>'}
 \]
 
-""" SUPER COOL TERMINAL THINGY
+"""SUPER COOL TERMINAL THINGY
 
 " Terminal Function
 let g:term_buf = 0

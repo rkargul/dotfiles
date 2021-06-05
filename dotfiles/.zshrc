@@ -32,6 +32,8 @@ export VISUAL=nvim
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+export PATH=$HOME/.scripts:$PATH
+
 # Aliases
 alias bspwmrc="nvim $HOME/.config/bspwm/bspwmrc"
 alias sxhkdrc="nvim $HOME/.config/sxhkd/sxhkdrc"

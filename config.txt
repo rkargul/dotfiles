@@ -5,3 +5,4 @@ ranger
 rofi 
 sxhkd 
 bspwm
+dunst

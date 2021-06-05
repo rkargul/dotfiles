@@ -2,11 +2,11 @@
 
 Included programs from the .config dir:
 
-[program configs](config.md)
+[program configs](config.txt)
 
 Dotfiles in the $HOME dir:
 
-[home dotfiles](dotfiles.md)
+[home dotfiles](dotfiles.txt)
 
 ## Usage
 

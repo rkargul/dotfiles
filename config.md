@@ -1,0 +1,7 @@
+nvim 
+polybar 
+kitty 
+ranger 
+rofi 
+sxhkd 
+bspwm

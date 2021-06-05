@@ -1,20 +1,22 @@
 #!/bin/bash
 
-CONFIG_DIRS="nvim polybar kitty ranger rofi sxhkd bspwm"
-DOTILES=".zshrc .scripts .oh-my-zsh .fehbg"
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 mkdir config &> /dev/null
 mkdir dotfiles &> /dev/null
 
-for dir in $CONFIG_DIRS; do
-	echo "Copying $dir"
-	cp -r $HOME/.config/$dir $SCRIPT_DIR/config/
-done
+input=$SCRIPT_DIR/config.md
 
-for file in $DOTFILES; do 
+while IFS= read -r dir; do
+	echo "Copying $dir"
+	cp -r $HOME/.config/$dir $SCRIPT_DIR/config/ &> /dev/null
+done < $input
+
+
+input=$SCRIPT_DIR/dotfiles.md
+
+while IFS= read -r file; do
 	echo "Copying $file"
-	cp -r $HOME/$file $SCRIPT_DIR/dotfiles/
-done
+	cp -r $HOME/$file $SCRIPT_DIR/dotfiles/ &> /dev/null
+done < $input
 

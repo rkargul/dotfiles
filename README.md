@@ -1,10 +1,10 @@
 # Dotfiles
 
-Included programs from the .config dir:
+Included programs from the `.config` dir:
 
 [program configs](config.txt)
 
-Dotfiles in the $HOME dir:
+Dotfiles in the `$HOME` dir:
 
 [home dotfiles](dotfiles.txt)
 

@@ -5,7 +5,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 mkdir config &> /dev/null
 mkdir dotfiles &> /dev/null
 
-input=$SCRIPT_DIR/config.md
+input=$SCRIPT_DIR/config.txt
 
 while IFS= read -r dir; do
 	echo "Copying $dir"
@@ -13,7 +13,7 @@ while IFS= read -r dir; do
 done < $input
 
 
-input=$SCRIPT_DIR/dotfiles.md
+input=$SCRIPT_DIR/dotfiles.txt
 
 while IFS= read -r file; do
 	echo "Copying $file"

@@ -1,10 +1,12 @@
 # Dotfiles
 
 Included programs from the .config dir:
-@@include[program configs](config.md)
+
+[program configs](config.md)
 
 Dotfiles in the $HOME dir:
-@@include[home dotfiles](dotfiles.md)
+
+[home dotfiles](dotfiles.md)
 
 ## Usage
 

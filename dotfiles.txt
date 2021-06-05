@@ -2,3 +2,4 @@
 .scripts 
 .oh-my-zsh 
 .fehbg
+.latexmkrc

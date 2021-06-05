@@ -1,0 +1,9 @@
+configuration {
+	modi: "drun";
+	width: 25%;
+	lines: 4;
+	font: "Hack Regular 12";
+	location: North;
+        show-icons: true;
+	theme: "badracula";
+}

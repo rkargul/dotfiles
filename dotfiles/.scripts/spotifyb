@@ -1,0 +1,5 @@
+#!/bin/bash
+bspc desktop -f 4
+spotify &
+disown
+exit

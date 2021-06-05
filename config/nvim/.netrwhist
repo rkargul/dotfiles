@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/'
+let g:netrw_dirhist_4='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/SBCPackageTransferService/SBCPackageTransferServiceServer/'
+let g:netrw_dirhist_3='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/SBCPackageTransferService/SBCPackageTransferServiceClient/'
+let g:netrw_dirhist_2='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/SBCPackageTransferService/'
+let g:netrw_dirhist_1='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/'
+let g:netrw_dirhist_0='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/MedicineScanning/'
+let g:netrw_dirhist_9='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/'
+let g:netrw_dirhist_8='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/MedicineScanning/'
+let g:netrw_dirhist_7='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/SBCPackageTransferService/SBCPackageTransferServiceClient/'
+let g:netrw_dirhist_6='scp://root@192.168.0.156/eya_deploy_temp/HardwareMigration/trunk/Source/SBCPackageTransferService/'

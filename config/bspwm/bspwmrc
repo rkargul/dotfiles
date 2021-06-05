@@ -1,0 +1,60 @@
+#! /bin/sh
+
+# Monitor setup
+
+if [[ $(xrandr -q | grep -w DP-1-0) =~ \ connected ]]; then
+	$HOME/.screenlayout/HOME.sh
+	
+	bspc monitor "eDP1" -n 1 -d IV V VI VII IIX IX X
+	bspc monitor "DP-1-0" -n 0 -d I II III
+
+	bspc monitor 1 -d 4 5 6 7 8 9 10
+	bspc monitor 0 -d 1 2 3
+
+	bspc monitor "eDP1" -s "DP-1-0"
+else 
+	$HOME/.screenlayout/SINGLE.sh
+
+	bspc monitor "eDP1" -n 1 -d I II III IV V VI VII IIX IX X
+
+	bspc monitor 1 -d 4 5 6 7 8 9 10 1 2 3
+fi
+
+# BSPWM Specific
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc config border_width         0
+bspc config window_gap          10
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a firefox desktop=2
+bspc rule -a Spotify desktop=4
+bspc rule -a Whatsapp-for-linux desktop=5
+bspc rule -a discord desktop=6
+bspc rule -a Steam desktop=8
+bspc rule -a Code desktop=3
+
+bspc rule -a Polybar state=floating
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# Background applications
+
+exec $HOME/.config/polybar/launch_hidden.sh --blocks &
+exec /usr/lib/geoclue-2.0/demos/agent &
+exec ps -aux | grep redshift || redshift &
+exec feh --bg-scale ~/Pictures/wallpaper.jpg &
+exec picom --backend glx &
+exec dunst &
+exec pkill redshift ; redshift &
+exec $HOME/.config/.scripts/lock.sh
+
+# Applets
+
+exec blueman-applet &
+

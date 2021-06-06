@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ $(ls -al /tmp/ | grep .launched) ]]; then
+	exit 0
+fi
+
+touch /tmp/.launched
+
 exec firefox & 
 exec discord & 
 exec whatsapp-for-linux &

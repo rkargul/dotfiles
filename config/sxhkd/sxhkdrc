@@ -168,3 +168,5 @@ super + {Left,Down,Up,Right}
 super + {_,shift + }w
 	bspc node -f {next,prev}
 
+
+

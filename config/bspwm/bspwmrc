@@ -14,17 +14,21 @@ if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
 	bspc monitor 0 -d 1 2 3
 
 	bspc monitor "eDP-1-1" -s "DP-0"
+
+	POLYBAR_R="1920x0+1440+5"
 else 
 	$HOME/.screenlayout/SINGLE.sh
 
 	bspc monitor "eDP-1-1" -n 1 -d I II III IV V VI VII IIX IX X
 
 	bspc monitor 1 -d 4 5 6 7 8 9 10 1 2 3
+	
+	POLYBAR_R="0x0+1920+5"
 fi
 
 # BSPWM Specific
 
-pgrep -x sxhkd > /dev/null || sxhkd -f 100 &
+pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc config border_width         0
 bspc config window_gap          15
@@ -47,7 +51,7 @@ bspc rule -a Screenkey manage=off
 
 # Background applications
 
-exec $HOME/.config/polybar/launch_hidden.sh --forest &
+exec $HOME/.config/polybar/launch_hidden.sh --forest 3 &
 exec /usr/lib/geoclue-2.0/demos/agent &
 exec ps -aux | grep redshift || redshift &
 exec feh --bg-scale ~/Pictures/wallpaper.jpg &

@@ -1,15 +1,45 @@
 #!/bin/bash
 
-function pacgrep () {
-	OUT=$(pactl list $2 | grep -B 1 $1 | head -n 1 | awk 'NF>1{print $NF}')
-	OUT="${OUT:1}"
-	echo $OUT
+function pacgrep-sink () {
+	OUT=$(pactl list sinks | grep -B 1 $1 | head -n 1 | awk 'NF>1{print $NF}')
+
+	if [[ $OUT ]]; then
+		echo ${OUT: -1}
+		exit 0
+	fi
 }
 
-if [[ $(pacgrep 'RUNNING' $1) ]]; then
-	echo $(pacgrep 'RUNNING' $1)
+function pacgrep-source () {
+	OUT=$(pactl list sources | grep -B 1 $1 | head -n 1 | awk 'NF>1{print $NF}')
+
+	if [[ $OUT ]]; then
+		echo ${OUT: -1}
+		exit 0
+	fi
+}
+
+function err() {
+	echo "Improper usage: get-active-sonk.sh [sinks, sources]"
+	exit 1
+}
+
+if ! [[ $1 ]]; then
+	err
+fi
+
+if [[ $1 -eq "sinks" ]]; then
+	pacgrep-sink 'RUNNING' $1
+	pacgrep-sink 'IDLE' $1
+	pacgrep-sink 'SUSPENDED' $1
 	exit 0
 fi
 
-pacgrep 'IDLE' $1
+if [[ $1 -eq "sources" ]]; then
+	pacgrep-sink 'RUNNING' $1
+	pacgrep-sink 'IDLE' $1
+	pacgrep-sink 'SUSPENDED' $1
+	exit 0
+fi
+
+err
 

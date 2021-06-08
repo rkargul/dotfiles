@@ -1,8 +1,10 @@
 [global]
-    frame_width = 1
-    frame_color = "#0078d7"
+    frame_width = 2
+    frame_color = "#c5c5c5"
     
-    font = Fira Code 10
+    font = Fira Code 12
+
+    corner_radius = 10
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -123,10 +125,10 @@
     
     # Padding between text and separator.
     # padding = 8
-    padding = 8
+    padding = 20
     
     # Horizontal padding.
-    horizontal_padding = 10
+    horizontal_padding = 20
     
     # Define a color for the separator.
     # possible values are:
@@ -140,9 +142,6 @@
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
     startup_notification = false
-    
-    # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
     
     # Browser for opening urls in context menu.
     browser = firefox
@@ -181,18 +180,20 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#292F34"
+    background = "#1c1c1c"
     foreground = "#F9FAF9"
+    frame_color = "#1c1c1c"
     timeout = 5
 
 [urgency_normal]
-    background = "#292F34"
+    background = "#1c1c1c"
     foreground = "#F9FAF9"
     timeout = 5
 
 [urgency_critical]
-    background = "#D62929"
+    background = "#1c1c1c"
     foreground = "#F9FAF9"
+    frame_color = "#ff005b"
     timeout = 5
 
 

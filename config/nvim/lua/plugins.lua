@@ -14,6 +14,9 @@ return require('packer').startup(function()
   use 'Shougo/neosnippet-snippets'
   use 'romgrk/barbar.nvim'
 
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
+
+
   use 'wfxr/minimap.vim'
 
   use 'sbdchd/neoformat'
@@ -53,9 +56,6 @@ return require('packer').startup(function()
   -- You can specify rocks in isolation
   use_rocks 'penlight'
   use_rocks {'lua-resty-http', 'lpeg'}
-
-  -- Plugins can have post-install/update hooks
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
 
   -- Post-install/update hook with call of vimscript function with argument
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }

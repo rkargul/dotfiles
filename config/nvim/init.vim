@@ -43,6 +43,16 @@ augroup fmt
   autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
+" Markdown Preview
+let g:mkdp_auto_start = 1
+let g:mkdp_auto_close = 1
+let g:mkdp_browser = 'firefox'
+let g:mkdp_browserfunc = 'OpenMarkDownPreview'
+
+function OpenMarkDownPreview(url)
+	call system('firefox --new-window ' . a:url)
+endfunction
+
 """Treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -103,11 +113,23 @@ autocmd BufEnter * lua require'completion'.on_attach()
 let g:completion_enable_snippet = 'Neosnippet'
 
 " Completion sources config
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['ts', 'lsp', 'snippet']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'}
-\]
+let g:completion_chain_complete_list = {
+    \ 'markdown': [
+    \    {'complete_items': ['ts', 'lsp', 'snippet', 'buffers']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'},
+    \],
+    \ 'text': [
+    \    {'complete_items': ['ts', 'lsp', 'snippet', 'buffers']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'},
+    \],
+    \ 'default': [
+    \    {'complete_items': ['ts', 'lsp', 'snippet']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+\}
 
 """SUPER COOL TERMINAL THINGY
 

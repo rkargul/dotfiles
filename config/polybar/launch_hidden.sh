@@ -10,13 +10,13 @@ until [[ $(ps aux | grep polybar) ]]; do
 done
 
 # Kill al instances of hideIt
-for PID in $(ps aux | grep hideIt.sh | grep -oP '^zohar\s+\K(\w+)\s' | head -n 3); do
+for PID in $(ps aux | grep hideIt.sh | grep -oP '^zohar\s+\K(\w+)\s' | head -n -1); do
 	kill -9 $PID
 done
 
 # Run hideIt
-exec hideIt.sh --class '^polybar$' --direction top -p $2 -H &> /dev/null &
+exec hideIt.sh --class '^polybar$' --direction top -p -$2 -H -S &> /dev/null &
 
 # Remove top padding
-bspc config top_padding $2
+bspc config top_padding 0
 

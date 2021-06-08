@@ -30,16 +30,16 @@ super + shift + s
 # multimedia
 
 XF86AudioMute 
-    	pactl set-sink-mute $(get_active_sink.sh sinks) toggle
+    	pactl set-sink-mute $(get_active_sonk.sh sinks) toggle && audio-notification.sh
 
 XF86AudioRaiseVolume
-    	pactl set-sink-volume $(get_active_sink.sh sinks) +5%
+    	pactl set-sink-volume $(get_active_sonk.sh sinks) +5% && audio-notification.sh
 
 XF86AudioLowerVolume
-    	pactl set-sink-volume $(get_active_sink.sh sinks) -5%
+    	pactl set-sink-volume $(get_active_sonk.sh sinks) -5% && audio-notification.sh
 
 super + F10
-	pactl set-source-mute $(get_active_source.sh sources) toggle
+	pactl set-source-mute $(get_active_sonk.sh sources) toggle
 
 XF86MonBrightnessUp
     	xbacklight -inc 5    
@@ -124,6 +124,9 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '{1-9,10}'
+
+super + e
+	exec hideIt.sh --class '^polybar$' -t
 
 #
 # preselect

@@ -2,6 +2,8 @@
 
 [![zoharcochavi](https://circleci.com/github/zoharcochavi/dotfiles.svg?style=shield)](https://app.circleci.com/pipelines/github/zoharcochavi/dotfiles)
 
+[![zoharcochavi](https://circleci.com/gh/zoharcochavi/dotfiles.svg?style=shield)](https://app.circleci.com/pipelines/github/zoharcochavi/dotfiles)
+
 Included programs from the `.config` dir:
 
 [program configs](config.txt)

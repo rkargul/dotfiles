@@ -11,7 +11,7 @@ if [[ "$TARGET_DIR" == "" ]]; then
 fi
 
 # check if $TARGET_DIR exists
-if ! [[ "$(ls $TARGET_DIR)" ]]; then
+if ! [[ "$(ls "$TARGET_DIR" &> /dev/null)" ]]; then
 	echo "Directory $TARGET_DIR doesn't exist, please change the target, or create the folder"
 	exit 1
 fi 

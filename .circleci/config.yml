@@ -1,0 +1,26 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  shellcheck: circleci/shellcheck@2.2.4
+# Orchestrate or schedule a set of jobs
+jobs:
+  shellcheck:
+    docker:
+      - image: koalaman/shellcheck-alpine:stable
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:
+          name: Check Scripts
+          command: |
+            ls *.sh | xargs shellcheck --external-sources
+
+workflows:
+  version: 2.1
+  check-build:
+    jobs:
+      - shellcheck

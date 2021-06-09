@@ -5,8 +5,22 @@ orbs:
   # Declare a dependency on the welcome-orb
   shellcheck: circleci/shellcheck@2.2.4
 # Orchestrate or schedule a set of jobs
+jobs:
+  shellcheck:
+    docker:
+      - image: koalaman/shellcheck-alpine:stable
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:
+          name: Check Scripts
+          command: |
+            ls *.sh | xargs shellcheck --external-sources
+
 workflows:
+  version: 2.1
   check-build:
     jobs:
-      - shellcheck/check # job defined within the orb so no further config necessary
-
+      - shellcheck

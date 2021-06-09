@@ -15,6 +15,6 @@ done < "$input"
 input="$SCRIPT_DIR"/dotfiles.txt
 
 while IFS= read -r file; do
-	echo "Copying "$file""
-	cp -r $HOME/"$file" "$SCRIPT_DIR"/dotfiles/ &> /dev/null
+	echo "Copying $file"
+	cp -r "$HOME"/"$file" "$SCRIPT_DIR"/dotfiles/ &> /dev/null
 done < "$input"

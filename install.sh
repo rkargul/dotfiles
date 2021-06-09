@@ -17,11 +17,11 @@ for file in "$SCRIPT_DIR"/dotfiles/.*; do
 done
 
 for dir in "$SCRIPT_DIR"/config/*; do
-	if ! [[ $(ls -al "$TARGET_DIR"/ | grep .config) ]]; then
+	if ! [[ "$(ls -al "$TARGET_DIR"/ | grep .config)" ]]; then
 		echo "Couldn't find .config, creating one..."
 		mkdir "$TARGET_DIR"/.config
 	fi
-	if ! [[ "${dir: -1}" == "." ]] && ! [[ ${dir: -1} == ".." ]]; then
+	if ! [[ "${dir: -1}" == "." ]] && ! [[ "${dir: -1}" == ".." ]]; then
 		echo "Copying $dir, to $TARGET_DIR"
 		cp -r "$dir"/ "$TARGET_DIR"/.config &> /dev/null
 	fi

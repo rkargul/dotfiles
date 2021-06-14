@@ -40,8 +40,25 @@ local on_attach = function(client, bufnrG)
   end
 end
 
-require('rust')
-require('clangd')
-require('pyright')
-require('latex')
+nvim_lsp.pyright.setup{ on_attach = on_attach }
+nvim_lsp.kotlin_language_server.setup{ on_attach = on_attach }
+nvim_lsp.clangd.setup{ on_attach = on_attach }
+nvim_lsp.rust_analyzer.setup{ on_attach = on_attach }
+nvim_lsp.texlab.setup{ 
+	on_attach = on_attach,
+	settings = {
+		texlab = {
+			build = {
+				args = {"-pdf", "-pvc", "-interaction=nonstopmode", "-synctex=1", "%f"},
+				isContinuous = true,
+			},
+			forwardSearch = {
+				executable = "evince-synctex",
+				args = {"-f", "%l", "%p", "\"code -g %f:%l\""},
+			},
+		},
+	},
+}
+
+
 

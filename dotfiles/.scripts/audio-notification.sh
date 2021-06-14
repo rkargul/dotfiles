@@ -1,20 +1,22 @@
 #!/bin/bash
-# changeVolume
 
 # Arbitrary but unique message id
 msgId="991049"
 
 # Query amixer for the current volume and whether or not the speaker is muted
-volume=$(pactl list sinks | grep '^[[:space:]]Volume:' | \
-	head -n $(( $(get_active_sonk.sh sinks) + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+VOLUME=$(pactl list sinks | grep -oPze "(?s)Sink #$(get_active_sonk.sh sinks).*?Volume.*?\K(\d+)%" | head -c -2)
+MUTED=$(pacmd list-sinks | grep -oPze "(?s)index: $(get_active_sonk.sh sinks).*?muted:\s+\K(\w+)")
 
-if [[ $volume == 0 ]]; then
+echo $MUTED
+echo $VOLUME
+
+if [[ $VOLUME == 0 ]] || [[ $MUTED == "yes" ]]; then
     # Show the sound muted notification
-    dunstify -a "changeVolume" -u low -i /usr/share/icons/Adwaita/32x32/status/audio-volume-muted-symbolic.symbolic.png -r "$msgId" "Volume muted" 
+    dunstify -a "changeVolume" -u low -i /home/zohar/Pictures/mute-2-24.png -r "$msgId" "Volume muted" 
 else
     # Show the volume notification
-    dunstify -a "changeVolume" -u low -i /usr/share/icons/Adwaita/32x32/status/audio-volume-high-symbolic.symbolic.png -r "$msgId" \
-    -h int:value:"$volume" "Volume: ${volume}%"
+    dunstify -a "changeVolume" -u low -i /home/zohar/Pictures/volume-up-4-24.png -r "$msgId" \
+    -h int:value:"$VOLUME" "Volume: ${VOLUME}%"
 fi
 
 # Play the volume changed sound

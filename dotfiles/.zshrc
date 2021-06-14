@@ -31,9 +31,6 @@ export VISUAL=nvim
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
-
-export PATH=$HOME/.scripts:$HOME/.local/share/nvim/bin/:$PATH
-
 # Aliases
 alias bspwmrc="nvim $HOME/.config/bspwm/bspwmrc"
 alias sxhkdrc="nvim $HOME/.config/sxhkd/sxhkdrc"
@@ -43,9 +40,13 @@ alias logout="loginctl kill-user zohar"
 alias kssh="kitty +kitten ssh"
 alias startworkenv="launchplayer && kssh root@193.168.0.156"
 alias svenv="source ./venv/bin/activate"
+alias cci="circleci"
 
 # Exports
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
+export PATH=$HOME/.scripts:$HOME/.local/share/nvim/bin/:$JAVA_HOME:$PATH:
+
 
 # SSH keys 
 eval $(ssh-agent -s) &> /dev/null
@@ -59,4 +60,16 @@ function copy ()
 {
 	cat $1 | xsel -i
 }
+
+# # save path on cd
+# function cd {
+#     builtin cd $@
+#     pwd > ~/.last_dir
+# }
+# 
+# # restore last saved path
+# if [ -f ~/.last_dir ]
+#     then cd `cat ~/.last_dir`
+# fi
+
 

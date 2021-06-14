@@ -1,4 +1,5 @@
 require'lspconfig'.texlab.setup{ 
+	on_attach = on_attach,
 	settings = {
 		texlab = {
 			build = {

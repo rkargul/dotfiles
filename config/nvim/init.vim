@@ -1,7 +1,16 @@
 lua require('plugins')
-lua require('lsp')
 lua require('neoscroll').setup()
-lua require('telescope').setup()
+lua require("telescope").setup()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+  }
+}
+EOF
 
 """ keybindings
 imap jk <Esc>
@@ -11,7 +20,15 @@ nmap <C-k> 10k
 map <Leader>e :NvimTreeToggle <CR>
 map <Leader>bt :TexlabBuild <CR>
 
-map <leader>q :BufferClose <CR>
+map <leader>q <cmd>call BufferCloseIfLast() <CR>
+
+function BufferCloseIfLast()
+	if len(getbufinfo({'buflisted':1})) - 1
+		call feedkeys(":BufferClose\<CR>")
+	else
+		call feedkeys(":q\<CR>")
+	endif
+endfunction
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -30,9 +47,12 @@ nnoremap <leader>mc <cmd>MinimapClose<cr>
 nnoremap <leader>mt <cmd>MinimapToggle<cr>
 
 " BarBar
-nmap <leader>s <cmd>BufferPick<cr>
+nmap <leader>g <cmd>BufferPick<cr>
 nmap <Tab> <cmd>BufferNext<cr>
-nmap <S-Tab> <cmd>BufferNext<cr>
+nmap <S-Tab> <cmd>BufferPrevious<cr>
+
+" Color-matched brackets
+let g:rainbow_active = 1
 
 " Auto-update packages when writing to plugins.lua
 autocmd BufWritePost plugins.lua PackerSync
@@ -43,6 +63,10 @@ augroup fmt
   autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
+" Nvim tree
+let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+
 " Markdown Preview
 let g:mkdp_auto_start = 1
 let g:mkdp_auto_close = 1
@@ -50,7 +74,7 @@ let g:mkdp_browser = 'firefox'
 let g:mkdp_browserfunc = 'OpenMarkDownPreview'
 
 function OpenMarkDownPreview(url)
-	call system('firefox --new-window ' . a:url)
+	call system('xdotool search --name "「README」" | grep -oP "\d+" || firefox --new-window ' . a:url)
 endfunction
 
 """Treesitter
@@ -124,11 +148,17 @@ let g:completion_chain_complete_list = {
     \    {'mode': '<c-p>'},
     \    {'mode': '<c-n>'},
     \],
-    \ 'default': [
-    \    {'complete_items': ['ts', 'lsp', 'snippet']},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \]
+    \'default': {
+    \     'default': [
+    \         {'complete_items': ['ts', 'lsp', 'snippet']},
+    \         {'mode': '<c-p>'},
+    \         {'mode': '<c-n>'},
+    \     ],
+    \     'string': [
+    \         {'complete_items': ['path']},
+    \      ],
+    \     'comment': []
+    \}
 \}
 
 """SUPER COOL TERMINAL THINGY
@@ -162,3 +192,5 @@ nnoremap <leader>t :call TermToggle(12)<CR>
 " Terminal go back to normal mode
 tnoremap <leader>t <C-\><C-n>:q!<CR>
 
+" Maybe loading the lsp last will make it at least load the buffer?
+lua require('lsp')

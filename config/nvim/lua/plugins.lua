@@ -13,6 +13,10 @@ return require('packer').startup(function()
   use 'Shougo/neosnippet.vim'
   use 'Shougo/neosnippet-snippets'
   use 'romgrk/barbar.nvim'
+  use 'tpope/vim-surround'
+
+  use 'jiangmiao/auto-pairs'
+  use 'p00f/nvim-ts-rainbow'
 
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
 

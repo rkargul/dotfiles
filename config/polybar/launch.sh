@@ -22,7 +22,7 @@ launch_bar() {
 	# Wait until the processes have been shut down
 	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 	
-	if type "xrandr"; then
+	if type "xrandr" && false ; then
 		for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
 			echo $m
 			MONITOR=$m launch_no_kill

@@ -1,8 +1,8 @@
-nvim 
-polybar 
-kitty 
-ranger 
-rofi 
-sxhkd 
+nvim
+polybar
+kitty
+ranger
+rofi
+sxhkd
 bspwm
 dunst

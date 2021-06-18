@@ -51,6 +51,9 @@ XF86MonBrightnessDown
 XF86AudioPlay
 	playerctl --player=spotify play-pause
 
+XF86AudioPause
+	playerctl --player=spotify play-pause
+
 XF86AudioNext
 	playerctl --player=spotify next
 

@@ -31,6 +31,7 @@ export VISUAL=nvim
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
+
 # Aliases
 alias bspwmrc="nvim $HOME/.config/bspwm/bspwmrc"
 alias sxhkdrc="nvim $HOME/.config/sxhkd/sxhkdrc"
@@ -41,6 +42,7 @@ alias kssh="kitty +kitten ssh"
 alias startworkenv="launchplayer && kssh root@193.168.0.156"
 alias svenv="source ./venv/bin/activate"
 alias cci="circleci"
+alias espenv=". $HOME/esp/export.sh"
 
 # Exports
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg
@@ -60,16 +62,4 @@ function copy ()
 {
 	cat $1 | xsel -i
 }
-
-# # save path on cd
-# function cd {
-#     builtin cd $@
-#     pwd > ~/.last_dir
-# }
-# 
-# # restore last saved path
-# if [ -f ~/.last_dir ]
-#     then cd `cat ~/.last_dir`
-# fi
-
 

@@ -4,8 +4,8 @@
 msgId="991049"
 
 # Query amixer for the current volume and whether or not the speaker is muted
-VOLUME=$(pactl list sinks | grep -oPze "(?s)Sink #$(get_active_sonk.sh sinks).*?Volume.*?\K(\d+)%" | head -c -2)
-MUTED=$(pacmd list-sinks | grep -oPze "(?s)index: $(get_active_sonk.sh sinks).*?muted:\s+\K(\w+)")
+VOLUME=$(pactl list sinks | grep -oPze "(?s)Sink #$(get_active_sonk.sh sinks)\n.*?Volume.*?\K(\d+)%" | head -c -2)
+MUTED=$(pacmd list-sinks | grep -oPze "(?s)index: $(get_active_sonk.sh sinks)\n.*?muted:\s+\K(\w+)")
 
 echo $MUTED
 echo $VOLUME

@@ -53,7 +53,7 @@ bspc rule -a Screenkey manage=off
 
 exec $HOME/.config/polybar/launch_hidden.sh --forest 3 &
 exec /usr/lib/geoclue-2.0/demos/agent &
-exec $(ps aux | grep redshift | head -n -1 || redshift) &
+exec $(pkill redshift; redshift) &
 exec feh --bg-scale ~/Pictures/wallpaper.jpg &
 exec $(pkill dunst; dunst -config $HOME/.config/dunst/dunstrc) &
 exec picom &

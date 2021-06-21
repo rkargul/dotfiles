@@ -132,6 +132,9 @@ super + {_,shift + }{1-9,0}
 super + e
 	exec hideIt.sh --class '^polybar$' -t
 
+super + shift + e
+	exec hideIt.sh --class '^Spotify$' -t
+
 #
 # preselect
 #

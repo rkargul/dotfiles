@@ -39,7 +39,11 @@ local on_attach = function(client, bufnrG)
     ]], false)
   end
 end
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+nvim_lsp.cssls.setup{ on_attach = on_attach, capabilities = capabilities }
 nvim_lsp.pyright.setup{ on_attach = on_attach }
 nvim_lsp.kotlin_language_server.setup{ on_attach = on_attach }
 nvim_lsp.clangd.setup{ on_attach = on_attach }

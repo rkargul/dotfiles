@@ -10,7 +10,7 @@ until [[ $(ps aux | grep polybar) ]]; do
 done
 
 # Kill al instances of hideIt
-for PID in $(ps aux | grep hideIt.sh | grep -oP '^zohar\s+\K(\w+)\s' | head -n -1); do
+for PID in $(ps aux | grep hideIt.sh | grep polybar | grep -oP '^zohar\s+\K(\w+)\s'); do
 	kill -9 $PID
 done
 

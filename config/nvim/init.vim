@@ -122,6 +122,7 @@ EOF
 """ Other
 set clipboard+=unnamedplus
 set autowriteall
+set tw=100
 
 """ completion-nvim
 " Set completeopt to have a better completion experience

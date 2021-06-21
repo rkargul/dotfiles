@@ -17,3 +17,6 @@ Use `sync.sh` to sync the folders/files listed in `config.txt` and `dotfiles.txt
 Use `install.sh` to copy all the contents to the target folder
 > Specify target folder with second argument, defaults to `$HOME`. Creates `.config` if it doesn't exist
 
+use `clean.sh` if you want to use the repo yourself. Then run `sync.sh` to run everything from
+scratch.
+

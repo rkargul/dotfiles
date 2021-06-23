@@ -2,7 +2,7 @@
     frame_width = 2
     frame_color = "#c5c5c5"
     
-    font = Fira Code 13
+    font = Fira Code 12
 
     corner_radius = 10
     

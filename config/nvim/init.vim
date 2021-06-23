@@ -122,7 +122,10 @@ EOF
 """ Other
 set clipboard+=unnamedplus
 set autowriteall
-set tw=100
+
+""" Set auto line-break in certain files
+autocmd BufRead,BufNewFile	*.md set tw=100
+autocmd BufRead,BufNewFile	*.txt set tw=100
 
 """ completion-nvim
 " Set completeopt to have a better completion experience

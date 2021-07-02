@@ -43,6 +43,8 @@ alias startworkenv="launchplayer && kssh root@193.168.0.156"
 alias svenv="source ./venv/bin/activate"
 alias cci="circleci"
 alias espenv=". $HOME/esp/export.sh"
+alias rn="ranger"
+alias nv="nvim"
 
 # Exports
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg
@@ -63,3 +65,10 @@ function copy ()
 	cat $1 | xsel -i
 }
 
+function try ()
+{
+	until "$@"
+	do
+		sleep 1
+	done
+}

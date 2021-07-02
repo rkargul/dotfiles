@@ -2,4 +2,4 @@
 .scripts
 .fehbg
 .latexmkrc
-.oh-my-zsh
+.oh-my-zsh/themes/bunker.zsh-theme

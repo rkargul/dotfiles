@@ -33,7 +33,7 @@ fi
 # copy all dirs in config to $TARGET_DIR/.config
 for dir in "$SCRIPT_DIR"/config/*; do
 	if ! [[ "${dir: -1}" == "." ]] && ! [[ "${dir: -1}" == ".." ]]; then
-		if $(cp -rf "$dir" "$TARGET_DIR"/.config &> /dev/null); then
+		if cp -rf "$dir" "$TARGET_DIR"/.config; then
 			echo "Copying $dir, to $TARGET_DIR"/.config
 		else
 			echo "Failed to copy $dir, to $TARGET_DIR"/.config

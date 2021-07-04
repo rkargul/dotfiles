@@ -2,18 +2,20 @@
 
 # Runs a backup of all important files:
 # - RSync documents folder with local NAS
-# - Sync dotfiles, commit to github, and mark release
+# - Sync dotfiles, commit, and push to remote
 
 DATE=$(date)
 
-# TODO Create local NAS, and backup with rsync
+# Backup with rsync
+echo "Backing up to local NAS..."
+rsync -azP "$HOME/Documents" 192.168.0.142
 
 # Sync dotfiles
-echo "Sycning..."
+echo "Sycning dotfiles..."
 cd $HOME/.dotfiles
 ./sync.sh
 
-echo "Pushing to github..."
+echo "Pushing to remote..."
 git add .
 git commit -m "Automatic backup $DATE"
 git push

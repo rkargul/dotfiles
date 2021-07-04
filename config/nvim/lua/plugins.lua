@@ -20,9 +20,6 @@ return require('packer').startup(function()
 
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
 
-
-  use 'wfxr/minimap.vim'
-
   use 'sbdchd/neoformat'
 
   use 'marko-cerovac/material.nvim'

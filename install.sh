@@ -11,7 +11,7 @@ if [[ "$TARGET_DIR" == "" ]]; then
 fi
 
 # check if $TARGET_DIR exists
-if ! [[ "$(ls "$TARGET_DIR" &> /dev/null)" ]]; then
+if [ ! -d "$TARGET_DIR" ]; then
 	echo "Directory $TARGET_DIR doesn't exist, please change the target, or create the folder"
 	exit 1
 fi 
@@ -25,7 +25,7 @@ for file in "$SCRIPT_DIR"/dotfiles/.*; do
 done
 
 # if .config doesnt exist, create it
-if ! [[ "$(ls -al "$TARGET_DIR"/.config)" ]]; then
+if [ ! -d "$TARGET_DIR"/.config ]; then
 	echo "Couldn't find .config, creating one..."
 	mkdir -p "$TARGET_DIR"/.config
 fi
@@ -33,9 +33,9 @@ fi
 # copy all dirs in config to $TARGET_DIR/.config
 for dir in "$SCRIPT_DIR"/config/*; do
 	if ! [[ "${dir: -1}" == "." ]] && ! [[ "${dir: -1}" == ".." ]]; then
-		if [[ "$(cp -r "$dir"/ "$TARGET_DIR"/.config &> /dev/null)" ]]; then
+		if $(cp -rf "$dir" "$TARGET_DIR"/.config &> /dev/null); then
 			echo "Copying $dir, to $TARGET_DIR"/.config
-		else 
+		else
 			echo "Failed to copy $dir, to $TARGET_DIR"/.config
 		fi
 	fi

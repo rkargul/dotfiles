@@ -1,0 +1,3 @@
+open -u anonymous, -p 21 192.168.0.1
+mirror -c -e -R/$HOME/Documents/* /G
+exit

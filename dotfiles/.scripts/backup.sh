@@ -8,11 +8,11 @@ DATE=$(date)
 
 # Backup with rsync
 echo "Backing up to local NAS..."
-rsync -azP "$HOME/Documents" 192.168.0.142
+rsync -azP "/home/zohar/Documents" 192.168.0.142
 
 # Sync dotfiles
 echo "Sycning dotfiles..."
-cd $HOME/.dotfiles
+cd /home/zohar/.dotfiles
 ./sync.sh
 
 echo "Pushing to remote..."

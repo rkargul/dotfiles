@@ -42,7 +42,7 @@ alias kssh="kitty +kitten ssh"
 alias startworkenv="launchplayer && kssh root@193.168.0.156"
 alias svenv="source ./venv/bin/activate"
 alias cci="circleci"
-alias espenv=". $HOME/esp/export.sh"
+alias espenv=". $HOME/esp/esp-idf/export.sh"
 alias rn="ranger"
 alias nv="nvim"
 
@@ -50,6 +50,7 @@ alias nv="nvim"
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
 export PATH=$HOME/.scripts:$HOME/.local/share/nvim/bin/:$JAVA_HOME:$PATH:
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 
 # SSH keys 

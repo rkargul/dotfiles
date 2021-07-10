@@ -4,6 +4,7 @@ export PATH=$HOME/.scripts/:$PATH
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Monitor setup
+bspc monitor any --reset-desktops
 
 if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
 	$HOME/.screenlayout/HOME.sh
@@ -15,6 +16,16 @@ if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
 	bspc monitor 0 -d 1 2 3
 
 	bspc monitor "eDP-1-1" -s "DP-0"
+elif [[ $(xrandr -q | grep -w HDMI-0) =~ \ connected ]]; then
+	$HOME/.screenlayout/WORK.sh
+	
+	bspc monitor "eDP-1-1" -n 1 -d IV V VI VII IIX IX X
+	bspc monitor "HDMI-0" -n 0 -d I II III
+
+	bspc monitor 1 -d 4 5 6 7 8 9 10
+	bspc monitor 0 -d 1 2 3
+
+	bspc monitor "eDP-1-1" -s "HMDI-0"
 else 
 	$HOME/.screenlayout/SINGLE.sh
 
@@ -45,6 +56,7 @@ bspc rule -a crx_hnpfjngllnobngcgfapefoaidbinmjnm desktop=5 # whatsapp google-ch
 bspc rule -a discord desktop=6
 bspc rule -a Steam desktop=8
 bspc rule -a Code desktop=3
+bspc rule -a slack-web=6
 
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
@@ -58,14 +70,6 @@ exec $(pkill redshift; redshift) &
 exec feh --bg-scale ~/Pictures/wallpaper.jpg &
 exec $(pkill dunst; dunst -config $HOME/.config/dunst/dunstrc) &
 exec picom &
-
-# Fancypants
-
-# exec $(pkill glava; glava -m "circle" --desktop) &
-
-# Applets
-
-exec blueman-applet &
 
 # Startup applications
 

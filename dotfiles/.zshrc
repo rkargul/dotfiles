@@ -41,7 +41,7 @@ alias nv="nvim"
 
 # Exports
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk/
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export PATH=$HOME/.scripts:$HOME/.local/share/nvim/bin/:$JAVA_HOME:$PATH:
 export _JAVA_AWT_WM_NONREPARENTING=1
 

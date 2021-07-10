@@ -1,11 +1,14 @@
 #!/bin/bash
 
-if [[ $(ls -al /tmp/ | grep .launched) ]]; then
-	exit 0
-fi
+# if [[ $(ls -al /tmp/ | grep .launched) ]]; then
+# 	exit 0
+# fi
 
-touch /tmp/.launched
+# touch /tmp/.launched
+function startnotrunning() {
+	ps aux | grep $1 | head -n -1 | grep $1 || $1 & 
+}
 
-exec firefox & 
-exec whatsapp-for-linux &
+startnotrunning firefox
+startnotrunning whatsapp-for-linux
 

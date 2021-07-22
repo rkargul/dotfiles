@@ -24,6 +24,10 @@ super + Escape
 super + shift + s
 	screengrab -r
 
+# lock screen
+super + ctrl + l
+        env XSECURELOCK_NO_COMPOSITE=1 xsecurelock
+
 # multimedia
 
 XF86AudioMute 
@@ -44,7 +48,7 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     	xbacklight -dec 5    
 
-alt + super + L
+ctrl + alt + 0xff69
 	playerctl --player=spotify play-pause
 
 XF86AudioPlay
@@ -137,10 +141,6 @@ super + shift + e
 #
 # preselect
 #
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}

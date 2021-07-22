@@ -16,7 +16,7 @@ if [[ $VOLUME == 0 ]] || [[ $MUTED == "yes" ]]; then
 else
     # Show the volume notification
     dunstify -a "changeVolume" -u low -i /home/zohar/Pictures/volume-up-4-24.png -r "$msgId" \
-    -h int:value:"$VOLUME" "Volume: ${VOLUME}%"
+    -h int:value:"$VOLUME" "Volume ${VOLUME}%"
 fi
 
 # Play the volume changed sound

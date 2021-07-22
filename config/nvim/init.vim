@@ -122,6 +122,7 @@ EOF
 """ Other
 set clipboard+=unnamedplus
 set autowriteall
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 """ Set auto line-break in certain files
 autocmd BufRead,BufNewFile	*.md set tw=100
@@ -198,3 +199,7 @@ tnoremap <leader>t <C-\><C-n>:q!<CR>
 
 " Maybe loading the lsp last will make it at least load the buffer?
 lua require('lsp')
+
+" Intellij-Specific
+set visualbell
+set noerrorbells

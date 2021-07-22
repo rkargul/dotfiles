@@ -7,31 +7,32 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 bspc monitor any --reset-desktops
 
 if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
-	$HOME/.screenlayout/HOME.sh
-	
-	bspc monitor "eDP-1-1" -n 1 -d IV V VI VII IIX IX X
-	bspc monitor "DP-0" -n 0 -d I II III
+    $HOME/.screenlayout/HOME.sh
+    
+    bspc monitor "eDP-1-1" -n 1 -d IV V VI VII IIX IX X
+    bspc monitor "DP-0" -n 0 -d I II III
 
-	bspc monitor 1 -d 4 5 6 7 8 9 10
-	bspc monitor 0 -d 1 2 3
+    bspc monitor 1 -d 4 5 6 7 8 9 10
+    bspc monitor 0 -d 1 2 3
 
-	bspc monitor "eDP-1-1" -s "DP-0"
+    bspc monitor "eDP-1-1" -s "DP-0"
 elif [[ $(xrandr -q | grep -w HDMI-0) =~ \ connected ]]; then
-	$HOME/.screenlayout/WORK.sh
-	
-	bspc monitor "eDP-1-1" -n 1 -d IV V VI VII IIX IX X
-	bspc monitor "HDMI-0" -n 0 -d I II III
+    $HOME/.screenlayout/WORK.sh
+    
+    bspc monitor "eDP-1-1" -n 1 -d IV V VI VII IIX IX X
+    bspc monitor "HDMI-0" -n 0 -d I II III
 
-	bspc monitor 1 -d 4 5 6 7 8 9 10
-	bspc monitor 0 -d 1 2 3
+    bspc monitor 1 -d 4 5 6 7 8 9 10
+    bspc monitor 0 -d 1 2 3
 
-	bspc monitor "eDP-1-1" -s "HMDI-0"
+    bspc monitor "eDP-1-1" -s "HMDI-0"
 else 
-	$HOME/.screenlayout/SINGLE.sh
+    $HOME/.screenlayout/SINGLE.sh
 
-	bspc monitor "eDP-1" -n 1 -d I II III IV V VI VII IIX IX X
+    # Use the first monitor name we see (depends on the use of video driver)
+    bspc monitor "$(xrandr -q | grep \ connected | head -n 1 | awk '{print $1;}')" -n 1 -d I II III IV V VI VII IIX IX X
 
-	bspc monitor 1 -d 1 2 3 4 5 6 7 8 9 10 
+    bspc monitor 1 -d 1 2 3 4 5 6 7 8 9 10 
 fi
 
 # BSPWM Specific
@@ -49,14 +50,18 @@ bspc config paddingless_monocle  true
 # One-shots
 
 bspc rule -a firefox desktop=2 --one-shot
+bspc rule -a kitty desktop=1 --one-shot
+
+# Consistent
 
 bspc rule -a Spotify desktop=4
 bspc rule -a Whatsapp-for-linux desktop=5
-bspc rule -a crx_hnpfjngllnobngcgfapefoaidbinmjnm desktop=5 # whatsapp google-chrome app
 bspc rule -a discord desktop=6
 bspc rule -a Steam desktop=8
 bspc rule -a Code desktop=3
-bspc rule -a slack-web=6
+bspc rule -a Slack desktop=6
+bspc rule -a jetbrains-idea desktop=3
+bspc rule -a Postman desktop=7
 
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on

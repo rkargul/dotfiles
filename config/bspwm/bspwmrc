@@ -1,7 +1,6 @@
 #! /bin/sh
 
 export PATH=$HOME/.scripts/:$PATH
-export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Monitor setup
 bspc monitor any --reset-desktops

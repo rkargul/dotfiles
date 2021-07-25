@@ -46,8 +46,8 @@ export LAN="192.168.0"
 
 
 # SSH keys 
-eval $(ssh-agent -s) &> /dev/null
-eval $(keychain --eval --quiet bunker)
+# eval $(ssh-agent -s) &> /dev/null
+eval $(keychain --agents gpg,ssh --eval --gpg2 --quiet bunker )
 
 # VI Key bindings
 export ZVM_VI_INSERT_ESCAPE_BINDKEY="jk"

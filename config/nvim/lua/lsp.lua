@@ -49,6 +49,7 @@ nvim_lsp.kotlin_language_server.setup{ on_attach = on_attach }
 nvim_lsp.java_language_server.setup{ on_attach = on_attach, cmd={ "/home/zohar/.java-language-server/scripts/link_linux.sh" }}
 nvim_lsp.clangd.setup{ on_attach = on_attach }
 nvim_lsp.rust_analyzer.setup{ on_attach = on_attach }
+nvim_lsp.svelte.setup { on_attach=on_attach }
 nvim_lsp.texlab.setup{ 
 	on_attach = on_attach,
 	settings = {

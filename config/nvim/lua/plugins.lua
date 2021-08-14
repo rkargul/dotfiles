@@ -30,6 +30,8 @@ return require('packer').startup(function()
   
   use 'Yggdroot/indentLine'
 
+  use 'windwp/nvim-ts-autotag'
+
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
 

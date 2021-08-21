@@ -4,6 +4,9 @@ return require('packer').startup(function()
   use '9mm/vim-closer'
   use 'karb94/neoscroll.nvim'
   use 'neovim/nvim-lspconfig'
+  use 'liuchengxu/vim-which-key'
+  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use 'mfussenegger/nvim-dap'
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 

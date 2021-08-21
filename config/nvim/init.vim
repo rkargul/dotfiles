@@ -2,6 +2,8 @@ lua require('plugins')
 lua require('neoscroll').setup()
 lua require("telescope").setup()
 
+lua require'flutter-tools'.setup {}
+
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   rainbow = {
@@ -14,6 +16,11 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 EOF
+
+""" abbreviations
+cabbr <expr> %% expand('%:p:h')
+command E e %%/
+
 
 """ keybindings
 imap jk <Esc>
@@ -195,7 +202,11 @@ function! TermToggle(height)
 endfunction
 
 " Toggle terminal on/off (neovim)
-nnoremap <leader>t :call TermToggle(12)<CR>
+if !exists('g:vscode')
+    nnoremap <leader>t :call TermToggle(12)<CR>
+else
+    nmap <leader>t VSCodeCall('workbench.action.terminal.toggleTerminal')
+endif
 
 " Terminal go back to normal mode
 tnoremap <leader>t <C-\><C-n>:q!<CR>

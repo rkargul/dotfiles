@@ -66,5 +66,3 @@ nvim_lsp.texlab.setup{
 	},
 }
 
-
-

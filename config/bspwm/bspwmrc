@@ -19,9 +19,10 @@ if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
     $HOME/.screenlayout/HOME.sh
     dual_monitor "DP-0" "eDP-1-1" 
     
-elif [[ $(xrandr -q | grep -w HDMI-1-1) =~ \ connected ]]; then
+elif [[ $(xrandr -q | grep -w HDMI-0) =~ \ connected ]]; then
     $HOME/.screenlayout/WORK.sh
-    dual_monitor "HDMI-1-1" "eDP2" 
+    dual_monitor "HDMI-0" "eDP-1-1" 
+
 else 
     $HOME/.screenlayout/SINGLE.sh
 

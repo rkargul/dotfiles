@@ -14,6 +14,7 @@ plugins=(
 	git 
 	zsh-syntax-highlighting 
 	zsh-autosuggestions
+        emoji
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -36,6 +37,7 @@ alias startworkenv="launchplayer && kssh root@193.168.0.156"
 alias svenv="source ./venv/bin/activate"
 alias cci="circleci"
 alias espenv=". $HOME/esp/esp-idf/export.sh"
+alias layout="nvim $HOME/.config/qmk/keyboards/sofle/keymaps/zoharcochavi/keymap.c"
 
 # Exports
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg

@@ -7,3 +7,4 @@ sxhkd
 bspwm
 dunst
 whatsapp-for-linux
+qmk

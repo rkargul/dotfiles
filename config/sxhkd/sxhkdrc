@@ -11,8 +11,12 @@ super + {_,shift + }Return
 super + space
     	$HOME/.config/rofi/launchers/text/launcher.sh
 
-# file explorer
+# fix tablet covering two screens
+super + shift + ctrl + t
+    xsetwacom set "Wacom Intuos Pro M Pen eraser" MapToOutput HEAD-0 \
+        && xsetwacom set "Wacom Intuos Pro M Pen stylus" MapToOutput HEAD-0
 
+# file explorer
 super + shift + f
 	nautilus
 

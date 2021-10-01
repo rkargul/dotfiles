@@ -1,6 +1,7 @@
 lua require('plugins')
 lua require('neoscroll').setup()
 lua require("telescope").setup()
+lua require('lsp')
 
 lua require'flutter-tools'.setup {}
 
@@ -13,7 +14,7 @@ require'nvim-treesitter.configs'.setup {
   },
   autotag = {
     enable = true;
-  }
+  },
 }
 EOF
 
@@ -120,14 +121,19 @@ let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
 
 " Colorscheme
-lua << EOF
-vim.o.background = 'dark'
-vim.g.colors_name = 'onedark_nvim'
+colorscheme onedark
 
+lua << EOF
 vim.g.onedark_override = {
       black = "#1c1c1c",
 }
 EOF
+
+" Settings for file-types
+autocmd BufRead,BufNewFile *.c,*.cpp,*.h,*.hpp
+      \ set shiftwidth=2
+autocmd BufRead,BufNewFile *.lua
+      \ set shiftwidth=2
 
 """ Other
 set clipboard+=unnamedplus
@@ -135,47 +141,50 @@ set autowriteall
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 """ Set auto line-break in certain files
-autocmd BufRead,BufNewFile	*.md set tw=100
-autocmd BufRead,BufNewFile	*.txt set tw=100
+autocmd BufRead,BufNewFile	*.md,*.txt set tw=100
 
 """ completion-nvim
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
-
-" Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
-
-" snippet source
-let g:completion_enable_snippet = 'Neosnippet'
-
-" Completion sources config
-let g:completion_chain_complete_list = {
-    \ 'markdown': [
-    \    {'complete_items': ['ts', 'lsp', 'snippet', 'buffers']},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'},
-    \],
-    \ 'text': [
-    \    {'complete_items': ['ts', 'lsp', 'snippet', 'buffers']},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'},
-    \],
-    \'default': {
-    \     'default': [
-    \         {'complete_items': ['ts', 'lsp', 'snippet']},
-    \         {'mode': '<c-p>'},
-    \         {'mode': '<c-n>'},
-    \     ],
-    \     'string': [
-    \         {'complete_items': ['path']},
-    \      ],
-    \     'comment': []
-    \}
-\}
-
+" Use <Tab> and <S-Tab> to navigate through popup menu
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" 
+" " Set completeopt to have a better completion experience
+" set completeopt=menuone,noinsert,noselect
+" 
+" " Avoid showing message extra message when using completion
+" set shortmess+=c
+" 
+" " Use completion-nvim in every buffer
+" autocmd BufEnter * lua require'completion'.on_attach()
+" 
+" " snippet source
+" let g:completion_enable_snippet = 'Ultisnips'
+" 
+" " Completion sources config
+" let g:completion_chain_complete_list = {
+"     \ 'markdown': [
+"     \    {'complete_items': ['ts', 'lsp', 'snippet', 'buffers']},
+"     \    {'mode': '<c-p>'},
+"     \    {'mode': '<c-n>'},
+"     \],
+"     \ 'text': [
+"     \    {'complete_items': ['ts', 'lsp', 'snippet', 'buffers']},
+"     \    {'mode': '<c-p>'},
+"     \    {'mode': '<c-n>'},
+"     \],
+"     \'default': {
+"     \     'default': [
+"     \         {'complete_items': ['ts', 'lsp']},
+"     \         {'mode': '<c-p>'},
+"     \         {'mode': '<c-n>'},
+"     \     ],
+"     \     'string': [
+"     \         {'complete_items': ['path']},
+"     \      ],
+"     \     'comment': []
+"     \}
+" \}
+" 
 """SUPER COOL TERMINAL THINGY
 
 " Terminal Function
@@ -210,9 +219,6 @@ endif
 
 " Terminal go back to normal mode
 tnoremap <leader>t <C-\><C-n>:q!<CR>
-
-" Maybe loading the lsp last will make it at least load the buffer?
-lua require('lsp')
 
 " Intellij-Specific
 set visualbell

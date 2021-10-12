@@ -1,4 +1,4 @@
-export ZSH="/home/zohar/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Theme
 ZSH_THEME="bunker"
@@ -43,7 +43,7 @@ alias startups="nvim $HOME/.scripts/startups"
 # Exports
 export XSECURELOCK_IMAGE_PATH=/home/zohar/Pictures/wallpaper.jpg
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-export PATH=$HOME/.scripts:$HOME/.local/share/nvim/bin/:$JAVA_HOME:$PATH:
+export PATH=$PATH:$HOME/.local/share/nvim/bin/:$JAVA_HOME:$HOME/.scripts/
 export _JAVA_AWT_WM_NONREPARENTING=1
 export LAN="192.168.0"
 
@@ -58,7 +58,7 @@ export ZVM_VI_INSERT_ESCAPE_BINDKEY="jk"
 # Other functions
 function copy () 
 {
-	xsel -b < $1
+	xsel -b < "$1"
 }
 
 function try ()
@@ -67,4 +67,9 @@ function try ()
 	do
 		sleep 1
 	done
+}
+
+function movetokindle () 
+{
+    cp -v "$1" /run/media/zohar/Kindle/documents
 }

@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+mkdir ~/"Google Drive"
+rclone mount "Google Drive": ~/"Google Drive"/        

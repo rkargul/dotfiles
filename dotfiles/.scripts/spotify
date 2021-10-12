@@ -1,0 +1,5 @@
+#!/bin/bash
+bspc desktop -f 4
+ps -e | grep spotify | head -n -1 | grep spotify || /usr/bin/spotify & 
+disown
+exit

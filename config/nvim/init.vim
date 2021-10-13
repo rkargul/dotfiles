@@ -1,6 +1,12 @@
-lua require('plugins')
+try
+    lua require('plugins')
+catch
+    PackerInstall
+endtry
+
 lua require('neoscroll').setup()
-lua require("telescope").setup()
+lua require('telescope').setup()
+lua require('nvim-tree').setup()
 lua require('lsp')
 
 lua require'flutter-tools'.setup {}
@@ -73,10 +79,6 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
-
-" Nvim tree
-let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
-let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
 
 " Markdown Preview
 let g:mkdp_auto_start = 1

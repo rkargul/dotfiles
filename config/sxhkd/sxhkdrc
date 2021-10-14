@@ -52,7 +52,8 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     	xbacklight -dec 5    
 
-ctrl + alt + 0xff69
+
+ctrl + alt + p
 	playerctl --player=spotify play-pause
 
 XF86AudioPlay

@@ -10,6 +10,9 @@ MUTED=$(pacmd list-sinks | grep -oPze "(?s)index: $(get_active_sonk.sh sinks)\n.
 echo $MUTED
 echo $VOLUME
 
+# Play the volume changed sound
+canberra-gtk-play -i audio-volume-change -d "changeVolume"
+
 if [[ $VOLUME == 0 ]] || [[ $MUTED == "yes" ]]; then
     # Show the sound muted notification
     dunstify -a "changeVolume" -u low -i /home/zohar/Pictures/mute-2-24.png -r "$msgId" "Volume muted" 
@@ -18,7 +21,3 @@ else
     dunstify -a "changeVolume" -u low -i /home/zohar/Pictures/volume-up-4-24.png -r "$msgId" \
     -h int:value:"$VOLUME" "Volume ${VOLUME}%"
 fi
-
-# Play the volume changed sound
-canberra-gtk-play -i audio-volume-change -d "changeVolume"
-

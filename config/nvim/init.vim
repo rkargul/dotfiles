@@ -122,14 +122,15 @@ let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
 
-" Colorscheme
-colorscheme onedark
-
 lua << EOF
 vim.g.onedark_override = {
       black = "#1c1c1c",
 }
 EOF
+
+" Colorscheme
+colorscheme onedark
+
 
 " Settings for file-types
 autocmd BufRead,BufNewFile *.c,*.cpp,*.h,*.hpp

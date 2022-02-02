@@ -75,7 +75,7 @@ exec /usr/lib/geoclue-2.0/demos/agent &
 exec $(pkill redshift; redshift) &
 exec feh --bg-scale ~/Pictures/wallpaper.jpg &
 exec $(pkill dunst; dunst -config $HOME/.config/dunst/dunstrc) &
-lsmod | grep nouveau || exec picom &  # Nouveau drivers does not like this..
+exec picom --corner-radius 10 &  # Nouveau drivers does not like this..
 
 # Startup applications
 

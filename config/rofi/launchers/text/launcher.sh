@@ -24,6 +24,6 @@ color="${styles[$(( $RANDOM % 10 ))]}"
 # theme="${themes[$(( $RANDOM % 7 ))]}"
 
 rofi -no-lazy-grab -show "$1" \
--modi calc,run,drun,window \
+-modi run,drun,window \
 -theme $dir/"$theme"
 

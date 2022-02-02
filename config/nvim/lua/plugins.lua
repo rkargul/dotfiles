@@ -42,9 +42,7 @@ require('packer').startup(function()
   use 'marko-cerovac/material.nvim'
   use 'sainnhe/edge'
   
-  use {'olimorris/onedark.nvim',
-    requires = 'rktjmp/lush.nvim'
-  }
+  use 'olimorris/onedark.nvim'
   
   use 'Yggdroot/indentLine'
 

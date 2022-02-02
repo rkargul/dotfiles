@@ -78,3 +78,4 @@ lsmod | grep nouveau || exec picom &  # Nouveau drivers does not like this..
 # Startup applications
 
 exec startups &
+$HOME/.scripts/hellowikipedia.sh

@@ -17,19 +17,19 @@ bspc monitor any --reset-desktops
 
 if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
     $HOME/.screenlayout/HOME.sh
-    dual_monitor "DP-0" "eDP-1-1" 
-    
+    dual_monitor "DP-0" "eDP-1-1"
+
 elif [[ $(xrandr -q | grep -w HDMI-0) =~ \ connected ]]; then
     $HOME/.screenlayout/WORK.sh
-    dual_monitor "HDMI-0" "eDP-1-1" 
+    dual_monitor "HDMI-0" "eDP-1-1"
 
-else 
+else
     $HOME/.screenlayout/SINGLE.sh
 
     # Use the first monitor name we see (depends on the use of video driver)
     bspc monitor "$(xrandr -q | grep \ connected | head -n 1 | awk '{print $1;}')" -n 1 -d I II III IV V VI VII IIX IX X
 
-    bspc monitor 1 -d 1 2 3 4 5 6 7 8 9 10 
+    bspc monitor 1 -d 1 2 3 4 5 6 7 8 9 10
 fi
 
 # BSPWM Specific
@@ -65,6 +65,8 @@ bspc rule -a Todoist desktop=1
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+bspc rule -a Emacs state=tiled
+bspc rule -a origin.exe state=floating
 
 # Background applications
 
@@ -78,4 +80,5 @@ lsmod | grep nouveau || exec picom &  # Nouveau drivers does not like this..
 # Startup applications
 
 exec startups &
+emacs --daemon
 $HOME/.scripts/hellowikipedia.sh

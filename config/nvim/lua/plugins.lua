@@ -1,7 +1,17 @@
 local use = require('packer').use
 
 require('packer').startup(function()
-
+  use {
+    "ahmedkhalf/jupyter-nvim",
+    run = ":UpdateRemotePlugins",
+    config = function()
+      require("jupyter-nvim").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
   use 'sirver/UltiSnips'
   use 'wbthomason/packer.nvim'
   use '9mm/vim-closer'

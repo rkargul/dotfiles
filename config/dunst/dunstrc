@@ -5,6 +5,7 @@
     font = Fira Code 12
 
     corner_radius = 10
+    offset = 40x40
     
     # Allow a small subset of html markup:
     #   <b>bold</b>

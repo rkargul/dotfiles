@@ -9,7 +9,10 @@ super + {_,shift + }Return
 
 # program launcher
 super + space
-    	$HOME/.config/rofi/launchers/text/launcher.sh
+    	$HOME/.config/rofi/launchers/text/launcher.sh drun
+
+super + shift + space
+    	$HOME/.config/rofi/launchers/text/launcher.sh calc
 
 # fix tablet covering two screens
 super + shift + ctrl + t
@@ -30,7 +33,7 @@ super + shift + s
 
 # lock screen
 super + ctrl + l
-        env XSECURELOCK_NO_COMPOSITE=1 xsecurelock
+        env XSECURELOCK_NO_COMPOSITE=1 XSECURELOCK_PASSWORD_PROMPT=kaomoji xsecurelock
 
 # multimedia
 
@@ -53,8 +56,14 @@ XF86MonBrightnessDown
     	xbacklight -dec 5    
 
 
-ctrl + alt + p
+ctrl + alt + o
 	playerctl --player=spotify play-pause
+
+ctrl + alt + p
+	playerctl --player=spotify next
+  
+ctrl + alt + i
+	playerctl --player=spotify previous
 
 XF86AudioPlay
 	playerctl --player=spotify play-pause

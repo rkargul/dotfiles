@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# assuming normal operation and this is session 1
+CURRENT_SESSION=$(loginctl list-sessions | grep $USER | awk '{print $1}')
+loginctl kill-session $CURRENT_SESSION

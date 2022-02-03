@@ -2,7 +2,7 @@
     frame_width = 2
     frame_color = "#c5c5c5"
     
-    font = Fira Code 12
+    font = "Fira Code 12"
 
     corner_radius = 10
     offset = 40x40
@@ -56,25 +56,12 @@
     word_wrap = yes
     
     # Ignore newlines '\n' in notifications.
-    ignore_newline = no
-    
-    
-    # The geometry of the window:
-    #   [{width}]x{height}[+/-{x}+/-{y}]
-    # The geometry of the message window.
-    # The height is measured in number of notifications everything else
-    # in pixels.  If the width is omitted but the height is given
-    # ("-geometry x2"), the message window expands over the whole screen
-    # (dmenu-like).  If width is 0, the window expands to the longest
-    # message displayed.  A positive x is measured from the left, a
-    # negative from the right side of the screen.  Y is measured from
-    # the top and down respectevly.
-    # The width can be negative.  In this case the actual width is the
-    # screen width minus the width defined in within the geometry option.
-    geometry = "700-25+25"
-    
+    ignore_newline = yes
+
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
+    height = 200
+    width = (0, 400)
     shrink = yes
     
     # The transparency of the window.  Range: [0; 100].
@@ -151,7 +138,7 @@
     icon_position = left
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
+    icon_path = /usr/share/icons/Arc/status/32/:/usr/share/icons/Arc/devices/32/
 
     # Limit icons size.
     max_icon_size=128

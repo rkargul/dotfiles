@@ -36,7 +36,9 @@ fi
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc config border_width         0
+bspc config border_width         2
+bspc config focused_border_color "#444444"
+bspc config normal_border_color "#1e1e1e"
 bspc config window_gap          15
 
 bspc config split_ratio          0.50
@@ -80,5 +82,4 @@ exec picom --corner-radius 10 &
 # Startup applications
 
 exec startups &
-emacs --daemon
 $HOME/.scripts/hellowikipedia.sh

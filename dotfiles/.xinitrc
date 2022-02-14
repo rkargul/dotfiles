@@ -46,5 +46,10 @@ xrdb ~/.Xresources
 # set default cursor to be the pointer (not the stupid X)
 xsetroot -cursor_name left_ptr
 
+# Make sure sxhkd is executed with bash, not fish
+export SXHKD_SHELL='/usr/bin/sh'
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 sxhkd &
 exec bspwm

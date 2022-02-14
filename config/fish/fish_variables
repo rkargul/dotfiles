@@ -2,8 +2,9 @@
 # VERSION: 3.0
 SETUVAR --export ALTERNATE_EDITOR:
 SETUVAR --export EDITOR:emacsclient\x20\x2dt
-SETUVAR --export SSH_AGENT_PID:1036
-SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dXXXXXXqmAAnv/agent\x2e1035
+SETUVAR --export EMACSREMOTESOCKETDIR:/run/user/1000/emacs_remote/
+SETUVAR --export SSH_AGENT_PID:1207
+SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dXXXXXX7Z90lu/agent\x2e1206
 SETUVAR --export VISUAL:emacsclient\x20\x2dc\x20\x2da\x20emacs
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_l:ls\x20\x2dal

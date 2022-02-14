@@ -163,7 +163,9 @@
     :priority_c    "[#C]"
     :priority_d    "[#D]"
     :priority_e    "[#E]")
-  (plist-put +ligatures-extra-symbols :name "⁍"))
+
+  (plist-put +ligatures-extra-symbols :name "⁍")
+)
 
   ;; LaTeX syntax highlighing
   (setq org-highlight-latex-and-related '(native script entities))
@@ -256,3 +258,12 @@
 (setq treemacs-indent-guide-mode t)
 (setq lsp-dart-sdk-dir "/home/zohar/snap/flutter/common/flutter/bin/cache/dart-sdk")
 (setq lsp-dart-flutter-sdk-dir "/home/zohar/snap/flutter/common/flutter/")
+
+;; ---- JAVA ----
+
+(after! meghanada)
+(setq meghanada-java-path "/usr/lib/jvm/java-11-openjdk/bin/java")
+(setq meghanada-maven-path "mvn")
+
+;; ---- PYTHON ----
+

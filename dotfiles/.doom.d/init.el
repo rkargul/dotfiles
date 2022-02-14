@@ -35,7 +35,7 @@
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        indent-guides     ; highlighted indent columns
-       (ligatures +extra +fira)        ; ligatures and symbols to make your code pretty again
+       (ligatures +fira)        ; ligatures and symbols to make your code pretty again
        minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
@@ -103,11 +103,11 @@
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       ;;upload            ; map local to remote projects via ssh/ftp
+       upload            ; map local to remote projects via ssh/ftp
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -118,7 +118,7 @@
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
-       ;;data              ; config/data formats
+       data              ; config/data formats
        (dart +flutter)   ; paint ui and not much else
        ;;dhall
        ;;elixir            ; erlang done right
@@ -135,8 +135,8 @@
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       ;;json              ; At least it ain't XML
-       ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
+       json              ; At least it ain't XML
+       (java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        kotlin            ; a better, slicker Java(Script)

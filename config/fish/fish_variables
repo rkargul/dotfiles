@@ -3,8 +3,9 @@
 SETUVAR --export ALTERNATE_EDITOR:
 SETUVAR --export EDITOR:emacsclient\x20\x2dt
 SETUVAR --export EMACSREMOTESOCKETDIR:/run/user/1000/emacs_remote/
-SETUVAR --export SSH_AGENT_PID:1207
-SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dXXXXXX7Z90lu/agent\x2e1206
+SETUVAR --export GPG_AGENT_INFO:/run/user/1000/gnupg/S\x2egpg\x2dagent\x3a1253\x3a1
+SETUVAR --export SSH_AGENT_PID:966
+SETUVAR --export SSH_AUTH_SOCK:/tmp/ssh\x2dXXXXXX7e0PnV/agent\x2e965
 SETUVAR --export VISUAL:emacsclient\x20\x2dc\x20\x2da\x20emacs
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_l:ls\x20\x2dal
@@ -38,4 +39,4 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/home/zohar/\x2elocal/bin\x1e/home/zohar/\x2eemacs\x2ed/bin\x1e/home/zohar/\x2escripts
+SETUVAR fish_user_paths:/home/zohar/go/bin\x1e/home/zohar/\x2elocal/bin\x1e/home/zohar/\x2eemacs\x2ed/bin\x1e/home/zohar/\x2escripts

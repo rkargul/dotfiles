@@ -30,7 +30,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-xcode)
+
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -58,8 +59,29 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(after! evil-mode
-    (define-key evil-normal-state-map "]t" 'vterm))
+;; ---- PROJECTILE ----
+
+(setq projectile-project-search-path '(("~/Documents/" . 4)))
+
+;; ---- UTILS ----
+
+(defun try-init-python-venv ()
+  "Enables python venv if project root contains .venv folder/file"
+  (let ((venvdir (concat (projectile-acquire-root) ".venv")))
+    (if (file-directory-p venvdir)
+        (init-python-venv venvdir))))
+
+(defun init-python-venv (venvdir)
+  "Initializes python venv directory"
+        (setq pyvenv-mode 1)
+        (pyvenv-activate venvdir)
+        (print (concat "Activated python (pyvenv and pipvenv) venv in: " venvdir)))
+
+(defun magit-push-implicitly-wrapper()
+  "Pushes to the default remote (origin)"
+  (magit-push-to-remote nil nil))
+
+;; ---- ORG ----
 
 (after! org
   ;; Pwetty symbols
@@ -265,5 +287,152 @@
 (setq meghanada-java-path "/usr/lib/jvm/java-11-openjdk/bin/java")
 (setq meghanada-maven-path "mvn")
 
-;; ---- PYTHON ----
+;; ---- DEVENV ----
 
+(require 'lsp-docker)
+
+(defvar lsp-docker-client-packages
+    '(lsp-css lsp-clients lsp-bash lsp-go lsp-pyls lsp-html lsp-typescript
+      lsp-terraform lsp-clangd))
+
+(setq lsp-docker-client-configs
+    '((:server-id bash-ls :docker-server-id bashls-docker :server-command "bash-language-server start")
+      (:server-id clangd :docker-server-id clangd-docker :server-command "clangd")
+      (:server-id css-ls :docker-server-id cssls-docker :server-command "css-languageserver --stdio")
+      ;; (:server-id dockerfile-ls :docker-server-id dockerfilels-docker :server-command "docker-langserver --stdio")
+      (:server-id gopls :docker-server-id gopls-docker :server-command "gopls")
+      (:server-id html-ls :docker-server-id htmls-docker :server-command "html-languageserver --stdio")
+      (:server-id pyls :docker-server-id pyls-docker :server-command "pyls")
+      ;; (:server-id ts-ls :docker-server-id tsls-docker :server-command "typescript-language-server --stdio")
+      ))
+
+(require 'lsp-docker)
+(lsp-docker-init-clients
+  :path-mappings '(("path-to-projects-you-want-to-use" . "/projects"))
+  :client-packages lsp-docker-client-packages
+  :client-configs lsp-docker-client-configs)
+
+;; ---- LIGATURES ----
+
+;; (use-package fira-code-mode
+  ;; :config (global-fira-code-mode))
+
+;; ---- PROJECTILE ----
+
+(after! projectile
+  (setq projectile-sort-order 'recentf)
+  (setq projectile-indexing-method 'alien))
+
+
+;; ---- PYTHON ----
+;; source: https://github.com/hlissner/doom-emacs/issues/6028
+(use-package! python-mode
+  :ensure t
+  :hook (python-mode . lsp-deferred)
+  :config
+  (set-ligatures! 'python-mode
+    ;; Functional
+    :def "def"
+    :lambda "lambda"
+    ;; Types
+    :null "None"
+    :true "True" :false "False"
+    :int "int" :str "str"
+    :float "float"
+    :bool "bool"
+    :tuple "tuple"
+    ;; Flow
+    :not "not"
+    :in "in" :not-in "not in"
+    :and "and" :or "or"
+    :for "for"
+    :return "return" :yield "yield")
+
+  (setq python-indent-guess-indent-offset-verbose nil)
+
+  ;; Default to Python 3. Prefer the versioned Python binaries since some
+  ;; systems stupidly make the unversioned one point at Python 2.
+  (when (and (executable-find "python3")
+             (string= python-shell-interpreter "python"))
+    (setq python-shell-interpreter "python3"))
+
+  (add-hook! 'python-mode-hook
+    (defun +python-use-correct-flycheck-executables-h ()
+      "Use the correct Python executables for Flycheck."
+      (let ((executable python-shell-interpreter))
+        (save-excursion
+          (goto-char (point-min))
+          (save-match-data
+            (when (or (looking-at "#!/usr/bin/env \\(python[^ \n]+\\)")
+                      (looking-at "#!\\([^ \n]+/python[^ \n]+\\)"))
+              (setq executable (substring-no-properties (match-string 1))))))
+        ;; Try to compile using the appropriate version of Python for
+        ;; the file.
+        (setq-local flycheck-python-pycompile-executable executable)
+        ;; We might be running inside a virtualenv, in which case the
+        ;; modules won't be available. But calling the executables
+        ;; directly will work.
+        (setq-local flycheck-python-pylint-executable "pylint")
+        (setq-local flycheck-python-flake8-executable "flake8"))))
+
+  (define-key python-mode-map (kbd "DEL") nil) ; interferes with smartparens
+  (sp-local-pair 'python-mode "'" nil
+                 :unless '(sp-point-before-word-p
+                           sp-point-after-word-p
+                           sp-point-before-same-p))
+
+  (setq-hook! 'python-mode-hook tab-width python-indent-offset))
+;; Set Path To pylsp and pyls otherwise it doesn't work
+(setq lsp-pyls-server-command "/home/ybenel/.local/bin/pyls")
+(setq lsp-pylsp-server-command "/home/ybenel/.local/bin/pylsp")
+;; Set Flake8 Ignore Codes
+(setq lsp-pylsp-plugins-flake8-ignore ["E231","226"])
+
+
+;; ---- DAP ----
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"          "n" #'dap-next
+      :desc "dap step in"       "i" #'dap-step-in
+      :desc "dap step out"      "o" #'dap-step-out
+      :desc "dap continue"      "c" #'dap-continue
+      :desc "dap hydra"         "h" #'dap-hydra
+      :desc "dap debug restart" "r" #'dap-debug-restart
+      :desc "dap debug"         "s" #'dap-debug
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent"  "r" #'dap-debug-recent
+      :desc "dap debug last"    "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
+
+;; ---- HOOKS ----
+(add-hook! 'kill-emacs-hook
+           #'magit-push-implicitly-wrapper)
+
+(add-hook! 'python-mode-hook
+           #'try-init-python-venv)
+
+(add-hook! 'markdown-mode-hook
+           #'turn-on-auto-fill)
+
+(add-hook! 'emacs-startup-hook
+           #'keychain-refresh-environment)

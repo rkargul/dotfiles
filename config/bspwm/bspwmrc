@@ -15,13 +15,13 @@ export PATH=$HOME/.scripts/:$PATH
 # Monitor setup
 bspc monitor any --reset-desktops
 
-if [[ $(xrandr -q | grep -w DP-0) =~ \ connected ]]; then
+if [[ $(xrandr -q | grep -w DP-1-0) =~ \ connected ]]; then
     $HOME/.screenlayout/HOME.sh
-    dual_monitor "DP-0" "eDP-1-1"
+    dual_monitor "DP-1-0" "eDP1"
 
 elif [[ $(xrandr -q | grep -w HDMI-0) =~ \ connected ]]; then
     $HOME/.screenlayout/WORK.sh
-    dual_monitor "HDMI-0" "eDP-1-1"
+    dual_monitor "HDMI-0" "eDP1"
 
 else
     $HOME/.screenlayout/SINGLE.sh

@@ -1,6 +1,6 @@
 # Dotfiles
 
-[![zoharcochavi](https://circleci.com/gh/zoharcochavi/dotfiles.svg?style=shield)](https://app.circleci.com/pipelines/github/zoharcochavi/dotfiles)
+[![zoharcochavi](https://circleci.com/gh/cochaviz/dotfiles.svg?style=shield)](https://app.circleci.com/pipelines/github/cochaviz/dotfiles)
 > Probably overkill, but I like devops 🚀 
 
 Contains various configuration files for Linux programs, among which:

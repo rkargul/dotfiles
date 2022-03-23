@@ -15,7 +15,6 @@
 (package! svelte-mode)
 (package! lsp-dart)
 (package! lsp-pyright)
-(package! fira-code-mode)
 (package! smooth-scrolling)
 (package! pyenv-mode-auto)
 (package! lsp-docker)

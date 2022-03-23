@@ -9,9 +9,6 @@
 (setq user-full-name "Zohar Cochavi"
       user-mail-address "cochavi.zohar@protonmail.com")
 
-;; Todoist-emacs
-(setq todoist-token "bf11d20d90d1603c11ac0d61526dfcc1d30c0028")
-
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -25,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size
 (setq doom-font (font-spec :family "Fira Code" :size 13)
-      doom-big-font (font-spec :family "Fira Code" :size 24))
+      doom-big-font (font-spec :family "Fira Mono" :size 24))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -61,7 +58,7 @@
 
 ;; ---- PROJECTILE ----
 
-(setq projectile-project-search-path '(("~/Documents/" . 4)))
+(setq projectile-project-search-path '(("~/Documents/Projects") ("~/Documents/Study/" . 4)))
 
 ;; ---- UTILS ----
 
@@ -102,91 +99,91 @@
           (?D . 'all-the-icons-green)
           (?E . 'all-the-icons-blue)))
   ;; Extra ligatures
-  (appendq! +ligatures-extra-symbols
-            `(:checkbox      "☐"
-              :pending       "◼"
-              :checkedbox    "☑"
-              :list_property "∷"
-              :em_dash       "—"
-              :ellipses      "…"
-              :arrow_right   "→"
-              :arrow_left    "←"
-              :title         "𝙏"
-              :subtitle      "𝙩"
-              :author        "𝘼"
-              :date          "𝘿"
-              :property      "☸"
-              :options       "⌥"
-              :startup       "⏻"
-              :macro         "𝓜"
-              :html_head     "🅷"
-              :html          "🅗"
-              :latex_class   "🄻"
-              :latex_header  "🅻"
-              :beamer_header "🅑"
-              :latex         "🅛"
-              :attr_latex    "🄛"
-              :attr_html     "🄗"
-              :attr_org      "⒪"
-              :begin_quote   "❝"
-              :end_quote     "❞"
-              :caption       "☰"
-              :header        "›"
-              :results       "🠶"
-              :begin_export  "⏩"
-              :end_export    "⏪"
-              :properties    "⚙"
-              :end           "∎"
-              :priority_a   ,(propertize "⚑" 'face 'all-the-icons-red)
-              :priority_b   ,(propertize "⬆" 'face 'all-the-icons-orange)
-              :priority_c   ,(propertize "■" 'face 'all-the-icons-yellow)
-              :priority_d   ,(propertize "⬇" 'face 'all-the-icons-green)
-              :priority_e   ,(propertize "❓" 'face 'all-the-icons-blue)))
+;;   (appendq! +ligatures-extra-symbols
+;;             `(:checkbox      "☐"
+;;               :pending       "◼"
+;;               :checkedbox    "☑"
+;;               :list_property "∷"
+;;               :em_dash       "—"
+;;               :ellipses      "…"
+;;               :arrow_right   "→"
+;;               :arrow_left    "←"
+;;               :title         "𝙏"
+;;               :subtitle      "𝙩"
+;;               :author        "𝘼"
+;;               :date          "𝘿"
+;;               :property      "☸"
+;;               :options       "⌥"
+;;               :startup       "⏻"
+;;               :macro         "𝓜"
+;;               :html_head     "🅷"
+;;               :html          "🅗"
+;;               :latex_class   "🄻"
+;;               :latex_header  "🅻"
+;;               :beamer_header "🅑"
+;;               :latex         "🅛"
+;;               :attr_latex    "🄛"
+;;               :attr_html     "🄗"
+;;               :attr_org      "⒪"
+;;               :begin_quote   "❝"
+;;               :end_quote     "❞"
+;;               :caption       "☰"
+;;               :header        "›"
+;;               :results       "🠶"
+;;               :begin_export  "⏩"
+;;               :end_export    "⏪"
+;;               :properties    "⚙"
+;;               :end           "∎"
+;;               :priority_a   ,(propertize "⚑" 'face 'all-the-icons-red)
+;;               :priority_b   ,(propertize "⬆" 'face 'all-the-icons-orange)
+;;               :priority_c   ,(propertize "■" 'face 'all-the-icons-yellow)
+;;               :priority_d   ,(propertize "⬇" 'face 'all-the-icons-green)
+;;               :priority_e   ,(propertize "❓" 'face 'all-the-icons-blue)))
 
   ;; Extra extra ligatures
-  (set-ligatures! 'org-mode
-    :merge t
-    :checkbox      "[ ]"
-    :pending       "[-]"
-    :checkedbox    "[X]"
-    :list_property "::"
-    :em_dash       "---"
-    :ellipsis      "..."
-    :arrow_right   "->"
-    :arrow_left    "<-"
-    :title         "#+title:"
-    :subtitle      "#+subtitle:"
-    :author        "#+author:"
-    :date          "#+date:"
-    :property      "#+property:"
-    :options       "#+options:"
-    :startup       "#+startup:"
-    :macro         "#+macro:"
-    :html_head     "#+html_head:"
-    :html          "#+html:"
-    :latex_class   "#+latex_class:"
-    :latex_header  "#+latex_header:"
-    :beamer_header "#+beamer_header:"
-    :latex         "#+latex:"
-    :attr_latex    "#+attr_latex:"
-    :attr_html     "#+attr_html:"
-    :attr_org      "#+attr_org:"
-    :begin_quote   "#+begin_quote"
-    :end_quote     "#+end_quote"
-    :caption       "#+caption:"
-    :header        "#+header:"
-    :begin_export  "#+begin_export"
-    :end_export    "#+end_export"
-    :results       "#+RESULTS:"
-    :property      ":PROPERTIES:"
-    :end           ":END:"
-    :priority_a    "[#A]"
-    :priority_b    "[#B]"
-    :priority_c    "[#C]"
-    :priority_d    "[#D]"
-    :priority_e    "[#E]")
-
-  (plist-put +ligatures-extra-symbols :name "⁍")
+;  (set-ligatures! 'org-mode
+;    :merge t
+;    :checkbox      "[ ]"
+;    :pending       "[-]"
+;    :checkedbox    "[X]"
+;    :list_property "::"
+;    :em_dash       "---"
+;    :ellipsis      "..."
+;    :arrow_right   "->"
+;    :arrow_left    "<-"
+;    :title         "#+title:"
+;    :subtitle      "#+subtitle:"
+;    :author        "#+author:"
+;    :date          "#+date:"
+;    :property      "#+property:"
+;    :options       "#+options:"
+;    :startup       "#+startup:"
+;    :macro         "#+macro:"
+;    :html_head     "#+html_head:"
+;    :html          "#+html:"
+;    :latex_class   "#+latex_class:"
+;    :latex_header  "#+latex_header:"
+;    :beamer_header "#+beamer_header:"
+;    :latex         "#+latex:"
+;    :attr_latex    "#+attr_latex:"
+;    :attr_html     "#+attr_html:"
+;    :attr_org      "#+attr_org:"
+;    :begin_quote   "#+begin_quote"
+;    :end_quote     "#+end_quote"
+;    :caption       "#+caption:"
+;    :header        "#+header:"
+;    :begin_export  "#+begin_export"
+;    :end_export    "#+end_export"
+;    :results       "#+RESULTS:"
+;    :property      ":PROPERTIES:"
+;    :end           ":END:"
+;    :priority_a    "[#A]"
+;    :priority_b    "[#B]"
+;    :priority_c    "[#C]"
+;    :priority_d    "[#D]"
+;    :priority_e    "[#E]")
+;
+;  (plist-put +ligatures-extra-symbols :name "⁍")
 )
 
   ;; LaTeX syntax highlighing
@@ -330,23 +327,23 @@
   :ensure t
   :hook (python-mode . lsp-deferred)
   :config
-  (set-ligatures! 'python-mode
-    ;; Functional
-    :def "def"
-    :lambda "lambda"
-    ;; Types
-    :null "None"
-    :true "True" :false "False"
-    :int "int" :str "str"
-    :float "float"
-    :bool "bool"
-    :tuple "tuple"
-    ;; Flow
-    :not "not"
-    :in "in" :not-in "not in"
-    :and "and" :or "or"
-    :for "for"
-    :return "return" :yield "yield")
+;  (set-ligatures! 'python-mode
+;    ;; Functional
+;    :def "def"
+;    :lambda "lambda"
+;    ;; Types
+;    :null "None"
+;    :true "True" :false "False"
+;    :int "int" :str "str"
+;    :float "float"
+;    :bool "bool"
+;    :tuple "tuple"
+;    ;; Flow
+;    :not "not"
+;    :in "in" :not-in "not in"
+;    :and "and" :or "or"
+;    :for "for"
+;    :return "return" :yield "yield")
 
   (setq python-indent-guess-indent-offset-verbose nil)
 
@@ -436,3 +433,27 @@
 
 (add-hook! 'emacs-startup-hook
            #'keychain-refresh-environment)
+
+
+;; ---- SPLASH SCREEN ----
+
+(defun doom-dashboard-draw-ascii-emacs-banner-fn ()
+  (let* ((banner
+          '("(╯°□°）╯︵ ┻━┻"))
+         (longest-line (apply #'max (mapcar #'length banner))))
+    (put-text-property
+     (point)
+     (dolist (line banner (point))
+       (insert (+doom-dashboard--center
+                +doom-dashboard--width
+                (concat
+                 line (make-string (max 0 (- longest-line (length line)))
+                                   32)))
+               "\n"))
+     'face 'doom-dashboard-banner)))
+
+(setq +doom-dashboard-ascii-banner-fn #'doom-dashboard-draw-ascii-emacs-banner-fn)
+
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))

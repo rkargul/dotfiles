@@ -226,4 +226,4 @@ tnoremap <leader>t <C-\><C-n>:q!<CR>
 " Intellij-Specific
 set visualbell
 set noerrorbells
-set ideajoin
+"set ideajoin

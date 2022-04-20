@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Arbitrary but unique message id
 msgId="991049"

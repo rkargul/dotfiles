@@ -10,13 +10,13 @@
 ;(package! some-package)
 (package! helm-bibtex)
 (package! org-ref)
-(package! org-fragtog)
-(package! todoist)
-(package! svelte-mode)
+ (package! org-fragtog)
+;; (package! todoist)
+;; (package! svelte-mode)
 (package! lsp-dart)
-(package! lsp-pyright)
+;; (package! lsp-pyright)
 (package! smooth-scrolling)
-(package! pyenv-mode-auto)
+;; (package! pyenv-mode-auto)
 (package! lsp-docker)
 (package! keychain-environment)
 
@@ -50,7 +50,6 @@
 
 ;; Use `:pin' to specify a particular commit to install.
 ;(package! builtin-package :pin "1a2b3c4d5e")
-
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...

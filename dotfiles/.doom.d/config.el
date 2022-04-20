@@ -21,8 +21,13 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size
-(setq doom-font (font-spec :family "Fira Code" :size 13)
+(setq doom-font (font-spec :family "Iosevka Extended" :size 14)
+      doom-variable-pitch-font(font-spec :family "Iosevka Aile" :size 14 :weight 'light)
       doom-big-font (font-spec :family "Fira Mono" :size 24))
+
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -37,7 +42,6 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
-
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -59,6 +63,10 @@
 ;; ---- PROJECTILE ----
 
 (setq projectile-project-search-path '(("~/Documents/Projects") ("~/Documents/Study/" . 4)))
+
+(defun enable-treemacs-follow-project-minor ()
+  "Enables treemacs-follow-project-mode via function call"
+  (setq! treemacs-project-follow-mode 1))
 
 ;; ---- UTILS ----
 
@@ -309,84 +317,37 @@
   :client-packages lsp-docker-client-packages
   :client-configs lsp-docker-client-configs)
 
-;; ---- LIGATURES ----
-
-;; (use-package fira-code-mode
-  ;; :config (global-fira-code-mode))
-
 ;; ---- PROJECTILE ----
 
 (after! projectile
   (setq projectile-sort-order 'recentf)
   (setq projectile-indexing-method 'alien))
 
-
 ;; ---- PYTHON ----
-;; source: https://github.com/hlissner/doom-emacs/issues/6028
-(use-package! python-mode
-  :ensure t
-  :hook (python-mode . lsp-deferred)
-  :config
-;  (set-ligatures! 'python-mode
-;    ;; Functional
-;    :def "def"
-;    :lambda "lambda"
-;    ;; Types
-;    :null "None"
-;    :true "True" :false "False"
-;    :int "int" :str "str"
-;    :float "float"
-;    :bool "bool"
-;    :tuple "tuple"
-;    ;; Flow
-;    :not "not"
-;    :in "in" :not-in "not in"
-;    :and "and" :or "or"
-;    :for "for"
-;    :return "return" :yield "yield")
 
-  (setq python-indent-guess-indent-offset-verbose nil)
+(add-hook! 'python-mode-hook
+  (defun +python-use-correct-flycheck-executables-h ()
+    "Use the correct Python executables for Flycheck."
+    (let ((executable python-shell-interpreter))
+      (save-excursion
+        (goto-char (point-min))
+        (save-match-data
+          (when (or (looking-at "#!/usr/bin/env \\(python[^ \n]+\\)")
+                    (looking-at "#!\\([^ \n]+/python[^ \n]+\\)"))
+            (setq executable (substring-no-properties (match-string 1))))))
+      ;; Try to compile using the appropriate version of Python for
+      ;; the file.
+      (setq-local flycheck-python-pycompile-executable executable)
+      ;; We might be running inside a virtualenv, in which case the
+      ;; modules won't be available. But calling the executables
+      ;; directly will work.
+      (setq-local flycheck-python-pylint-executable "pylint")
+      (setq-local flycheck-python-flake8-executable "flake8"))))
 
-  ;; Default to Python 3. Prefer the versioned Python binaries since some
-  ;; systems stupidly make the unversioned one point at Python 2.
-  (when (and (executable-find "python3")
-             (string= python-shell-interpreter "python"))
-    (setq python-shell-interpreter "python3"))
-
-  (add-hook! 'python-mode-hook
-    (defun +python-use-correct-flycheck-executables-h ()
-      "Use the correct Python executables for Flycheck."
-      (let ((executable python-shell-interpreter))
-        (save-excursion
-          (goto-char (point-min))
-          (save-match-data
-            (when (or (looking-at "#!/usr/bin/env \\(python[^ \n]+\\)")
-                      (looking-at "#!\\([^ \n]+/python[^ \n]+\\)"))
-              (setq executable (substring-no-properties (match-string 1))))))
-        ;; Try to compile using the appropriate version of Python for
-        ;; the file.
-        (setq-local flycheck-python-pycompile-executable executable)
-        ;; We might be running inside a virtualenv, in which case the
-        ;; modules won't be available. But calling the executables
-        ;; directly will work.
-        (setq-local flycheck-python-pylint-executable "pylint")
-        (setq-local flycheck-python-flake8-executable "flake8"))))
-
-  (define-key python-mode-map (kbd "DEL") nil) ; interferes with smartparens
-  (sp-local-pair 'python-mode "'" nil
-                 :unless '(sp-point-before-word-p
-                           sp-point-after-word-p
-                           sp-point-before-same-p))
-
-  (setq-hook! 'python-mode-hook tab-width python-indent-offset))
-;; Set Path To pylsp and pyls otherwise it doesn't work
-(setq lsp-pyls-server-command "/home/ybenel/.local/bin/pyls")
-(setq lsp-pylsp-server-command "/home/ybenel/.local/bin/pylsp")
-;; Set Flake8 Ignore Codes
-(setq lsp-pylsp-plugins-flake8-ignore ["E231","226"])
-
+(setq-hook! 'python-mode-hook tab-width python-indent-offset)
 
 ;; ---- DAP ----
+
 (map! :map dap-mode-map
       :leader
       :prefix ("d" . "dap")
@@ -422,6 +383,7 @@
   (setq dap-python-debugger 'debugpy))
 
 ;; ---- HOOKS ----
+
 (add-hook! 'kill-emacs-hook
            #'magit-push-implicitly-wrapper)
 
@@ -431,9 +393,12 @@
 (add-hook! 'markdown-mode-hook
            #'turn-on-auto-fill)
 
-(add-hook! 'emacs-startup-hook
-           #'keychain-refresh-environment)
+(add-hook! 'org-mode-hook
+           #'turn-on-auto-fill)
 
+(add-hook! 'emacs-startup-hook
+           #'keychain-refresh-environment
+           #'enable-treemacs-follow-project-minor)
 
 ;; ---- SPLASH SCREEN ----
 

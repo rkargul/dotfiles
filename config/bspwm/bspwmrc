@@ -1,6 +1,6 @@
-#! /bin/sh
+#!/usr/bin/env sh
 
-function dual_monitor() {
+dual_monitor() {
     bspc monitor $2 -n 1 -d IV V VI VII IIX IX X
     bspc monitor $1 -n 0 -d I II III
 
@@ -10,21 +10,21 @@ function dual_monitor() {
     bspc monitor $2 -s $1
 }
 
-export PATH=$HOME/.scripts/:$PATH
+export PATH=~/.scripts/:"$PATH"
 
 # Monitor setup
 bspc monitor any --reset-desktops
 
 if [[ $(xrandr -q | grep -w DP-1-0) =~ \ connected ]]; then
-    $HOME/.screenlayout/HOME.sh
+    ~/.screenlayout/HOME.sh
     dual_monitor "DP-1-0" "eDP1"
 
 elif [[ $(xrandr -q | grep -w HDMI-0) =~ \ connected ]]; then
-    $HOME/.screenlayout/WORK.sh
+    ~/.screenlayout/WORK.sh
     dual_monitor "HDMI-0" "eDP1"
 
 else
-    $HOME/.screenlayout/SINGLE.sh
+    ~/.screenlayout/SINGLE.sh
 
     # Use the first monitor name we see (depends on the use of video driver)
     bspc monitor "$(xrandr -q | grep \ connected | head -n 1 | awk '{print $1;}')" -n 1 -d I II III IV V VI VII IIX IX X
@@ -46,10 +46,13 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config paddingless_monocle  true
 
+# XORG
+
+xsetroot -cursor_name left_ptr
+
 # One-shots
 
 bspc rule -a firefox desktop=2 --one-shot
-# bspc rule -a kitty desktop=1 --one-shot
 
 # Consistent
 
@@ -63,6 +66,7 @@ bspc rule -a Slack desktop=6
 bspc rule -a jetbrains-idea desktop=3
 bspc rule -a Postman desktop=7
 bspc rule -a Todoist desktop=1
+bspc rule -a Mattermost desktop=5
 
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
@@ -73,13 +77,13 @@ bspc rule -a origin.exe state=floating
 # Background applications
 
 exec $HOME/.config/polybar/launch_hidden.sh --forest 3 &
-exec /usr/lib/geoclue-2.0/demos/agent &
-exec $(pkill redshift; redshift) &
+# exec /usr/lib/geoclue-2.0/demos/agent &
+# exec $(pkill redshift; redshift) &
 exec feh --bg-scale ~/Pictures/wallpaper.jpg &
 exec $(pkill dunst; dunst -config $HOME/.config/dunst/dunstrc) &
-exec picom --corner-radius 10 &
+# exec picom --corner-radius 10 &
 
 # Startup applications
 
 exec startups &
-$HOME/.scripts/hellowikipedia.sh
+~/.scripts/hellowikipedia.sh

@@ -38,16 +38,16 @@ super + ctrl + l
 # multimedia
 
 XF86AudioMute 
-    	pactl set-sink-mute $(get_active_sonk.sh sinks) toggle && audio-notification.sh
+    	pactl set-sink-mute (get_active_sonk.sh sinks) toggle && audio-notification.sh
 
 XF86AudioRaiseVolume
-    	pactl set-sink-volume $(get_active_sonk.sh sinks) +5% && audio-notification.sh
+    	pactl set-sink-volume (get_active_sonk.sh sinks) +5% && audio-notification.sh
 
 XF86AudioLowerVolume
-    	pactl set-sink-volume $(get_active_sonk.sh sinks) -5% && audio-notification.sh
+    	pactl set-sink-volume (get_active_sonk.sh sinks) -5% && audio-notification.sh
 
 super + F10
-	pactl set-source-mute $(get_active_sonk.sh sources) toggle
+	pactl set-source-mute (get_active_sonk.sh sources) toggle
 
 XF86MonBrightnessUp
     	xbacklight -inc 5    

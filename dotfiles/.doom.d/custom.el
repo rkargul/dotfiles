@@ -8,7 +8,8 @@
    '((eval setq projectile-run-cmd 'test/run_with_analysis\.sh)
      (eval setq projectile-run-cmd-map 'test/run_with_analysis\.sh)
      (eval setq projectile-run-cmd-map "test/run_with_analysis.sh")
-     (eval setq projectile-project-run-cmd "test/run_with_analysis.sh"))))
+     (eval setq projectile-project-run-cmd "test/run_with_analysis.sh")))
+ '(warning-suppress-types '((comp) (comp) (comp) (comp) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

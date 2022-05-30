@@ -59,14 +59,15 @@ bspc rule -a firefox desktop=2 --one-shot
 bspc rule -a notion-app desktop=1
 bspc rule -a Spotify desktop=4
 bspc rule -a Whatsapp-for-linux desktop=5
-bspc rule -a discord desktop=6
+bspc rule -a discord desktop=5
 bspc rule -a Steam desktop=8
 bspc rule -a Code desktop=3
-bspc rule -a Slack desktop=6
+bspc rule -a Slack desktop=5
 bspc rule -a jetbrains-idea desktop=3
 bspc rule -a Postman desktop=7
 bspc rule -a Todoist desktop=1
 bspc rule -a Mattermost desktop=5
+bspc rule -a web.whatsapp.com desktop=5
 
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
@@ -77,11 +78,8 @@ bspc rule -a origin.exe state=floating
 # Background applications
 
 exec $HOME/.config/polybar/launch_hidden.sh --forest 3 &
-# exec /usr/lib/geoclue-2.0/demos/agent &
-# exec $(pkill redshift; redshift) &
-exec feh --bg-scale ~/Pictures/wallpaper.jpg &
-exec $(pkill dunst; dunst -config $HOME/.config/dunst/dunstrc) &
-# exec picom --corner-radius 10 &
+exec feh --bg-fill ~/Pictures/wallpaper.jpg &
+exec $(pkill dunst; dunst -config "$HOME"/.config/dunst/dunstrc) &
 
 # Startup applications
 

@@ -6,7 +6,6 @@
 super + {_,shift + }Return
 	kitty { ,"$(xcwd)"}
 
-
 # program launcher
 super + space
     	$HOME/.config/rofi/launchers/text/launcher.sh drun
@@ -35,25 +34,29 @@ super + shift + s
 super + ctrl + l
         env XSECURELOCK_NO_COMPOSITE=1 XSECURELOCK_PASSWORD_PROMPT=kaomoji xsecurelock
 
+# silence notifications
+super + shift +  m
+      dunstctl set-paused toggle
+
 # multimedia
 
 XF86AudioMute 
-    	pactl set-sink-mute (get_active_sonk.sh sinks) toggle && audio-notification.sh
+    pactl set-sink-mute $(pactl get-default-sink) toggle && audio-notification.sh
 
 XF86AudioRaiseVolume
-    	pactl set-sink-volume (get_active_sonk.sh sinks) +5% && audio-notification.sh
+    pactl set-sink-volume $(pactl get-default-sink) +5% && audio-notification.sh
 
 XF86AudioLowerVolume
-    	pactl set-sink-volume (get_active_sonk.sh sinks) -5% && audio-notification.sh
+    pactl set-sink-volume $(pactl get-default-sink) -5% && audio-notification.sh
 
-super + F10
-	pactl set-source-mute (get_active_sonk.sh sources) toggle
+XF86AudioMicMute
+    pactl set-source-mute $(pactl get-default-source) toggle
 
 XF86MonBrightnessUp
-    	xbacklight -inc 5    
+    xbacklight -inc 5
 
 XF86MonBrightnessDown
-    	xbacklight -dec 5    
+    xbacklight -dec 5
 
 
 ctrl + alt + o

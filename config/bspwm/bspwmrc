@@ -37,7 +37,7 @@ fi
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc config border_width         2
-bspc config focused_border_color "#444444"
+bspc config focused_border_color "$(xrdb -get color11)"
 bspc config normal_border_color "#1e1e1e"
 bspc config window_gap          15
 

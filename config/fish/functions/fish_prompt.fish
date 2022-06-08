@@ -15,7 +15,7 @@ function fish_prompt
 
     set -l lambda "$arrow_color λ "
     if fish_is_root_user
-        set lambda "$arrow_colorΛ "
+        set lambda "$arrow_color Λ "
     end
 
     set -l cwd $cyan(basename (prompt_pwd))

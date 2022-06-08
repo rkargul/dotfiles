@@ -21,6 +21,7 @@ require('packer').startup(function()
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
   use 'mfussenegger/nvim-dap'
   use 'emakman/nvim-latex-previewer'
+  use 'nekonako/xresources-nvim'
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 

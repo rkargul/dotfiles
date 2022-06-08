@@ -129,8 +129,8 @@ vim.g.onedark_override = {
 EOF
 
 " Colorscheme
-colorscheme onedark
-
+" colorscheme onedark
+colorscheme xresources
 
 " Settings for file-types
 autocmd BufRead,BufNewFile *.c,*.cpp,*.h,*.hpp

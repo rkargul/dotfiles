@@ -2,9 +2,9 @@
     frame_width = 2
     frame_color = "#c5c5c5"
     
-    font = "Fira Code 12"
+    font = "Iosevka Extended 12"
 
-    corner_radius = 10
+    corner_radius = 0
     offset = 40x40
     
     # Allow a small subset of html markup:
@@ -168,20 +168,24 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1c1c1c"
-    foreground = "#F9FAF9"
-    frame_color = "#1c1c1c"
+    background = "#1a1a1a"
+    foreground = "#cecece"
+    frame_color = "#16a34a"
+    highlight = "#16a34a"
     timeout = 5
 
 [urgency_normal]
-    background = "#1c1c1c"
-    foreground = "#F9FAF9"
+    background = "#1a1a1a"
+    foreground = "#cecece"
+    frame_color = "#cecece"
+    highlight = "#cecece"
     timeout = 5
 
 [urgency_critical]
-    background = "#1c1c1c"
-    foreground = "#F9FAF9"
-    frame_color = "#ff005b"
+    background = "#1a1a1a"
+    foreground = "#cecece"
+    frame_color = "#d87354"
+    highlight = "#d87354"
     timeout = 5
 
 

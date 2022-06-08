@@ -42,12 +42,12 @@ for file in "$SCRIPT_DIR"/dotfiles/.*; do
 
 		if [ -f "$TARGET_DIR"/"$FILENAME" ] || [ -d "$TARGET_DIR"/"$FILENAME" ]; then
 			if [[ $NUKE == "NUKE" ]]; then
-				rm -r "${TARGET_DIR:?}"/"$FILENAME"
+				rm -f "${TARGET_DIR:?}"/"$FILENAME"
 				cecho "YELLOW" "Found and removed $FILENAME from $TARGET_DIR"
 			fi
 		fi
 
-		if ln -s "$file" "$TARGET_DIR"; then
+		if ln -s "$file" "$TARGET_DIR" &> /dev/null; then
 			cecho "GREEN" "Linked $file to $TARGET_DIR/$FILENAME"
 		else
 			cecho "RED" "Failed to link $file to $TARGET_DIR/$FILENAME, file exists"
@@ -67,7 +67,7 @@ for dir in "$SCRIPT_DIR"/config/*; do
 		DIRNAME=${dir##*/}
 
 		if [ -d "$TARGET_DIR"/.config/"$DIRNAME" ] && [[ $NUKE == "NUKE" ]]; then
-			rm "$TARGET_DIR"/.config/"$DIRNAME"
+			rm -rf "$TARGET_DIR"/.config/"$DIRNAME"
 			cecho "YELLOW" "Found and removed $dir from $TARGET_DIR/.config"
 		fi
 

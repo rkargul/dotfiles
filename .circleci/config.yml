@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Check Scripts
           command: |
-            ls *.sh | xargs shellcheck --external-sources
+            ls *.sh dotfiles/.scripts/*.sh | xargs shellcheck --external-sources 
 
 workflows:
   check-build:

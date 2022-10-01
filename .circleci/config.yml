@@ -3,7 +3,7 @@ version: 2.1
 # Use a package of configuration called an orb.
 orbs:
   # Declare a dependency on the welcome-orb
-  shellcheck: circleci/shellcheck@2.2.4
+  shellcheck: circleci/shellcheck@3.1.1
 # Orchestrate or schedule a set of jobs
 jobs:
   shellcheck:
